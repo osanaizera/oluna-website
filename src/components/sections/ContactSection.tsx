@@ -100,56 +100,7 @@ export default function ContactSection() {
         {!showForm ? (
           // CTA Principal
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-primary-100 rounded-full px-6 py-3 mb-8">
-              <div className="w-2 h-2 bg-primary-400 rounded-full animate-pulse"></div>
-              <span className="text-primary-700 font-medium">Análise Gratuita</span>
-            </div>
 
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">
-              Detecte Problemas Antes que{' '}
-              <span className="bg-gradient-to-r from-primary-400 via-accent-500 to-secondary-500 bg-clip-text text-transparent">
-                Vire Prejuízo
-              </span>
-            </h2>
-
-            <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Nossa equipe de engenheiros CRE A está pronta para analisar sua operação. 
-              <strong className="text-gray-900"> Diagnóstico inicial gratuito</strong> com relatório 
-              personalizado em até 48 horas.
-            </p>
-
-            {/* Benefícios */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <AnalysisIcon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Análise Personalizada</h3>
-                <p className="text-gray-600 text-sm">
-                  Relatório específico para sua operação com recomendações prioritárias
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-secondary-500 to-primary-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <SpeedIcon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Resposta Rápida</h3>
-                <p className="text-gray-600 text-sm">
-                  Primeira análise em até 24h, com agendamento imediato se urgente
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-accent-500 to-secondary-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <SecurityIcon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Sem Compromisso</h3>
-                <p className="text-gray-600 text-sm">
-                  Análise gratuita sem obrigação de contratação. Você decide.
-                </p>
-              </div>
-            </div>
 
             {/* Opções de Contato */}
             <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100 mb-8">

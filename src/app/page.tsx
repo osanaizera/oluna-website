@@ -319,237 +319,140 @@ export default function HomePage() {
       <ServicesCarousel />
 
       {/* Seção Sobre */}
-      <section id="sobre" className="py-20 bg-white relative overflow-hidden">
-        {/* Advanced Background with Thermal Waves */}
-        <div className="absolute inset-0">
-          {/* Animated Thermal Waves Background */}
-          <div className="absolute inset-0 opacity-10">
-            <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="aboutThermal1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="var(--heat-orange)" stopOpacity="0.4" />
-                  <stop offset="50%" stopColor="var(--heat-red)" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="var(--cool-teal)" stopOpacity="0.1" />
-                </linearGradient>
-                <linearGradient id="aboutThermal2" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="var(--cool-teal)" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="var(--heat-red)" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="var(--heat-orange)" stopOpacity="0.2" />
-                </linearGradient>
-                <filter id="aboutGlow">
-                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                  <feMerge> 
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/> 
-                  </feMerge>
-                </filter>
-              </defs>
-              
-              {/* Flowing thermal waves */}
-              <path d="M0,150 Q300,100 600,150 T1200,150" 
-                    stroke="url(#aboutThermal1)" 
-                    strokeWidth="3" 
-                    fill="none" 
-                    filter="url(#aboutGlow)"
-                    className="animate-pulse"
-                    style={{ animationDuration: '4s' }} />
-              
-              <path d="M0,250 Q400,200 800,250 T1200,250" 
-                    stroke="url(#aboutThermal2)" 
-                    strokeWidth="2" 
-                    fill="none" 
-                    filter="url(#aboutGlow)"
-                    className="animate-pulse"
-                    style={{ animationDuration: '6s', animationDelay: '1s' }} />
-              
-              <path d="M0,350 Q200,300 400,350 T800,350 Q1000,320 1200,350" 
-                    stroke="url(#aboutThermal1)" 
-                    strokeWidth="1.5" 
-                    fill="none" 
-                    className="animate-pulse"
-                    style={{ animationDuration: '8s', animationDelay: '2s' }} />
-              
-              {/* Thermal particles */}
-              {[...Array(8)].map((_, i) => (
-                <circle 
-                  key={i}
-                  cx={150 + (i * 130)}
-                  cy={200 + (i % 2) * 100}
-                  r="2"
-                  fill="var(--heat-orange)"
-                  opacity="0.4"
-                  className="animate-bounce"
-                  style={{ 
-                    animationDuration: `${3 + (i % 2)}s`,
-                    animationDelay: `${i * 0.5}s`
-                  }}
-                />
-              ))}
-            </svg>
-          </div>
-
-          {/* Subtle radial gradients */}
-          <div className="absolute inset-0 opacity-5">
-            <div 
-              className="absolute inset-0"
-              style={{
-                background: `
-                  radial-gradient(circle at 10% 20%, var(--heat-orange) 0%, transparent 50%),
-                  radial-gradient(circle at 90% 80%, var(--cool-teal) 0%, transparent 50%)
-                `
-              }}
-            />
-          </div>
+      <section id="sobre" className="py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
+        {/* Simplified Thermal Background */}
+        <div className="absolute inset-0 opacity-10">
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: `
+                radial-gradient(circle at 20% 30%, var(--heat-orange) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, var(--cool-teal) 0%, transparent 50%)
+              `
+            }}
+          />
         </div>
 
-        <div className="container mx-auto px-6 relative">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-display font-semibold text-gray-900 mb-6">
-                Quem Somos
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto mb-8"></div>
+        <div className="container mx-auto px-6 relative z-10">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20">
+              <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+              <span className="text-white font-medium">Engenharia Carioca</span>
             </div>
+            
+            <h2 className="text-5xl md:text-6xl font-display font-bold text-white mb-6">
+              Sobre a{' '}
+              <span 
+                className="transition-all duration-1000"
+                style={{ 
+                  color: 'var(--heat-orange)',
+                  textShadow: '0 0 30px var(--heat-orange)40'
+                }}
+              >
+                Ôluna
+              </span>
+            </h2>
+            
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Engenharia especializada com mais de 25 anos de experiência na indústria, 
+              atuando no Rio de Janeiro, Região dos Lagos e Serra Carioca.
+            </p>
+          </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Texto institucional */}
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            
+            {/* Texto principal */}
+            <div className="space-y-8">
               <div>
-                <p className="text-xl text-gray-700 leading-relaxed mb-8">
-                  Somos a <strong className="text-primary-400">Ôluna</strong> — engenheiros apaixonados por 
-                  <strong className="text-accent-500"> descobrir o invisível</strong> e transformar dados em ações. 
+                <h3 className="text-2xl font-display font-semibold text-white mb-4">
+                  Expertise e Experiência
+                </h3>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Somos uma empresa carioca com mais de <strong className="text-white">25 anos de experiência</strong> na indústria. 
+                  Nossa expertise técnica consolidada permite entregar soluções de engenharia de precisão 
+                  com qualidade e confiabilidade.
                 </p>
-                
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  Usamos a ciência da termografia e diagnósticos elétricos para garantir 
-                  <strong> segurança, continuidade operacional e economia de energia</strong> em 
-                  indústrias de médio e grande porte.
-                </p>
+              </div>
 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-3 h-3 bg-primary-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Equipe Familiar & Sênior</h4>
-                      <p className="text-gray-600">Combinação de proximidade humana com expertise técnica CRE A</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-3 h-3 bg-accent-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Abordagem 360°</h4>
-                      <p className="text-gray-600">Desde inspeções e laudos NR-10 até monitoramento contínuo e planos de ação</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-3 h-3 bg-secondary-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Tecnologia Própria</h4>
-                      <p className="text-gray-600">Relatórios digitais interativos e dashboard para acompanhamento histórico</p>
-                    </div>
-                  </div>
+              <div>
+                <h3 className="text-2xl font-display font-semibold text-white mb-4">
+                  Entendemos os Desafios do Seu Negócio
+                </h3>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Conhecemos os desafios dos negócios em manter sistemas confiáveis e eficientes. 
+                  Vivemos o momento de modernização da sociedade durante a <strong className="text-white">transição energética</strong>, 
+                  e sabemos da importância de ter parceiros que forneçam serviços e informações de qualidade.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-display font-semibold text-white mb-4">
+                  Compromisso com a Qualidade
+                </h3>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Combinamos experiência técnica com proximidade humana para entregar soluções que realmente funcionam. 
+                  Nosso compromisso é ser um <strong className="text-white">parceiro de confiança</strong> na sua jornada 
+                  de eficiência e modernização energética.
+                </p>
+              </div>
+            </div>
+
+            {/* Estatísticas e credenciais */}
+            <div className="space-y-8">
+              {/* Stats Cards */}
+              <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
+                  <div className="text-4xl font-bold text-white mb-2">25+</div>
+                  <div className="text-white font-medium mb-1">Anos de</div>
+                  <div className="text-gray-300 text-sm">Experiência</div>
+                </div>
+                
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
+                  <div className="text-4xl font-bold text-white mb-2">100%</div>
+                  <div className="text-white font-medium mb-1">Engenheiros</div>
+                  <div className="text-gray-300 text-sm">CRE A</div>
+                </div>
+                
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
+                  <div className="text-4xl font-bold text-white mb-2">RJ</div>
+                  <div className="text-white font-medium mb-1">Empresa</div>
+                  <div className="text-gray-300 text-sm">Carioca</div>
                 </div>
               </div>
 
-              {/* Área visual */}
-              <div className="relative">
-                <div className="bg-gray-50 rounded-3xl p-8 relative overflow-hidden">
-                  {/* Enhanced Thermal Pattern */}
-                  <div className="absolute inset-0 opacity-15">
-                    <svg className="w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="none">
-                      <defs>
-                        <radialGradient id="thermal-pattern-main" cx="50%" cy="50%" r="50%">
-                          <stop offset="0%" stopColor="var(--heat-orange)" />
-                          <stop offset="50%" stopColor="var(--heat-red)" />
-                          <stop offset="100%" stopColor="var(--cool-teal)" />
-                        </radialGradient>
-                        <radialGradient id="thermal-pattern-accent" cx="50%" cy="50%" r="40%">
-                          <stop offset="0%" stopColor="var(--cool-teal)" />
-                          <stop offset="50%" stopColor="var(--heat-red)" />
-                          <stop offset="100%" stopColor="var(--heat-orange)" />
-                        </radialGradient>
-                        <filter id="thermalGlow">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                          <feMerge> 
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/> 
-                          </feMerge>
-                        </filter>
-                      </defs>
-                      
-                      {/* Main thermal blobs with animation */}
-                      <circle cx="80" cy="80" r="45" fill="url(#thermal-pattern-main)" opacity="0.4" 
-                              className="animate-pulse" style={{ animationDuration: '3s' }} />
-                      <circle cx="300" cy="150" r="60" fill="url(#thermal-pattern-accent)" opacity="0.3" 
-                              className="animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }} />
-                      <circle cx="150" cy="280" r="50" fill="url(#thermal-pattern-main)" opacity="0.5" 
-                              className="animate-pulse" style={{ animationDuration: '5s', animationDelay: '2s' }} />
-                      
-                      {/* Thermal waves connecting the blobs */}
-                      <path d="M80,80 Q200,100 300,150 Q250,200 150,280" 
-                            stroke="url(#thermal-pattern-main)" 
-                            strokeWidth="2" 
-                            fill="none" 
-                            opacity="0.3" 
-                            filter="url(#thermalGlow)"
-                            className="animate-pulse" 
-                            style={{ animationDuration: '6s' }} />
-                      
-                      {/* Floating thermal particles */}
-                      {[...Array(12)].map((_, i) => (
-                        <circle 
-                          key={i}
-                          cx={50 + (i * 30) % 350}
-                          cy={50 + Math.floor(i / 6) * 150}
-                          r="1.5"
-                          fill={i % 3 === 0 ? 'var(--heat-orange)' : i % 3 === 1 ? 'var(--heat-red)' : 'var(--cool-teal)'}
-                          opacity="0.4"
-                          className="animate-bounce"
-                          style={{ 
-                            animationDuration: `${2 + (i % 3)}s`,
-                            animationDelay: `${i * 0.3}s`
-                          }}
-                        />
-                      ))}
-                    </svg>
+              {/* Áreas de atuação */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <h4 className="text-xl font-semibold text-white mb-4 text-center">Áreas de Atuação</h4>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+                    <span className="text-gray-300">Rio de Janeiro (Capital e Grande Rio)</span>
                   </div>
-
-                  <div className="relative text-center">
-                    <div className="text-6xl font-bold text-primary-400 mb-4">Ô</div>
-                    <h3 className="text-2xl font-display font-semibold text-gray-900 mb-4">
-                      Visão Termográfica<br />Exclusiva
-                    </h3>
-                    <p className="text-gray-600 mb-6">
-                      Gradientes únicos que simulam ondas de calor como nossa assinatura visual
-                    </p>
-                    
-                    {/* Estatísticas em destaque */}
-                    <div className="grid grid-cols-2 gap-4 mt-8">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-accent-500">100%</div>
-                        <div className="text-sm text-gray-500">Engenheiros CRE A</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-secondary-500">24/7</div>
-                        <div className="text-sm text-gray-500">Monitoramento</div>
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+                    <span className="text-gray-300">Região dos Lagos (Cabo Frio, Búzios, Arraial)</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+                    <span className="text-gray-300">Serra Carioca (Petrópolis, Teresópolis, Nova Friburgo)</span>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Depoimento/Missão */}
-            <div className="mt-16 text-center">
-              <div className="bg-gradient-to-r from-primary-400/10 via-accent-500/10 to-secondary-500/10 rounded-3xl p-8 max-w-3xl mx-auto">
-                <div className="text-4xl text-primary-400 mb-4">"</div>
-                <p className="text-xl text-gray-700 leading-relaxed italic mb-4">
-                  Nossa missão é transformar o invisível em visível, protegendo suas operações 
-                  antes que problemas se tornem prejuízos.
-                </p>
-                <div className="w-16 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto"></div>
-              </div>
+          {/* Missão */}
+          <div className="mt-20 text-center">
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 max-w-4xl mx-auto border border-white/10">
+              <div className="text-6xl text-white/80 mb-6">"</div>
+              <p className="text-2xl text-white leading-relaxed italic mb-6">
+                Nossa missão é ser o parceiro de confiança na transição energética, 
+                transformando o invisível em visível e protegendo suas operações 
+                com qualidade e informação de excelência.
+              </p>
+              <div className="w-24 h-1 bg-gradient-to-r from-white/60 to-white/40 mx-auto"></div>
             </div>
           </div>
         </div>
@@ -635,203 +538,122 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Case 1 - Fábrica de Alimentos */}
+            {/* Case 1 - Hotel Resort */}
             <ThermoCard delay={0} className="shadow-card hover:shadow-card-hover transition-all duration-500 group">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-accent-500 rounded-xl flex items-center justify-center">
-                  <IndustryIcon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                  <ThermographyIcon className="w-6 h-6 text-gray-700" />
                 </div>
                 <div>
                   <h3 className="text-xl font-display font-semibold text-gray-900">
-                    Fábrica de Alimentos
+                    Hotel Resort - Cabo Frio
                   </h3>
-                  <p className="text-gray-500">Rio de Janeiro • Indústria Alimentícia</p>
+                  <p className="text-gray-500">Região dos Lagos • Termografia de Painéis</p>
                 </div>
               </div>
 
               <div className="space-y-4 mb-8">
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">🚨 Desafio</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Desafio</h4>
                   <p className="text-gray-600">
-                    Paradas não programadas frequentes no CCM A causavam perdas significativas 
-                    na produção e comprometiam prazos de entrega.
+                    Falhas recorrentes no sistema elétrico durante alta temporada, 
+                    comprometendo a experiência dos hóspedes.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">⚡ Solução Ôluna</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Solução</h4>
                   <p className="text-gray-600">
-                    Inspeção termográfica completa revelou disjuntor crítico com sobreaquecimento. 
-                    Substituição programada durante manutenção preventiva.
+                    Inspeção termográfica da subestação de 500kVA e 12 painéis elétricos 
+                    principais com câmera termográfica calibrada.
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-r from-primary-400/10 to-accent-500/10 rounded-2xl p-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">🎯 Resultado</h4>
+                <div className="bg-gray-50 rounded-2xl p-6">
+                  <h4 className="font-semibold text-gray-900 mb-3">Resultado</h4>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary-400">30%</div>
-                      <div className="text-sm text-gray-600">↓ Downtime</div>
+                      <div className="text-2xl font-bold text-gray-700">8</div>
+                      <div className="text-sm text-gray-600">Pontos Quentes</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-accent-500">4</div>
-                      <div className="text-sm text-gray-600">Meses ROI</div>
+                      <div className="text-2xl font-bold text-gray-700">500kVA</div>
+                      <div className="text-sm text-gray-600">Subestação</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-primary-400 to-accent-500 text-white py-3 rounded-xl font-semibold hover:shadow-thermal transition-all duration-300 group-hover:scale-105">
-                Ver Case Completo
+              <button className="w-full bg-gray-800 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all duration-300">
+                Ver Relatório
               </button>
             </ThermoCard>
 
-            {/* Case 2 - Shopping Center */}
+            {/* Case 2 - Condomínio Empresarial */}
             <ThermoCard delay={300} className="shadow-card hover:shadow-card-hover transition-all duration-500 group">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary-500 to-primary-400 rounded-xl flex items-center justify-center">
-                  <EnergyDiagnosticIcon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                  <EnergyDiagnosticIcon className="w-6 h-6 text-gray-700" />
                 </div>
                 <div>
                   <h3 className="text-xl font-display font-semibold text-gray-900">
-                    Shopping Center
+                    Condomínio Empresarial
                   </h3>
-                  <p className="text-gray-500">São Paulo • Varejo e Serviços</p>
+                  <p className="text-gray-500">Rio de Janeiro • Análise de Qualidade de Energia</p>
                 </div>
               </div>
 
               <div className="space-y-4 mb-8">
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">🚨 Desafio</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Desafio</h4>
                   <p className="text-gray-600">
-                    Contas de energia excessivamente altas impactavam a margem operacional 
-                    e competitividade do empreendimento.
+                    Equipamentos de ar condicionado apresentando falhas e multas 
+                    por baixo fator de potência.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">⚡ Solução Ôluna</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Solução</h4>
                   <p className="text-gray-600">
-                    Diagnóstico energético profissional identificou baixo fator de potência 
-                    e harmônicas. Implementação de correção FP e filtros.
+                    Medição de qualidade energética com analisador trifásico, 
+                    análise de harmônicas e THD durante 7 dias consecutivos.
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-r from-secondary-500/10 to-primary-400/10 rounded-2xl p-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">🎯 Resultado</h4>
+                <div className="bg-gray-50 rounded-2xl p-6">
+                  <h4 className="font-semibold text-gray-900 mb-3">Resultado</h4>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-secondary-500">12%</div>
-                      <div className="text-sm text-gray-600">↓ Consumo</div>
+                      <div className="text-2xl font-bold text-gray-700">0.95</div>
+                      <div className="text-sm text-gray-600">Fator Potência</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary-400">6</div>
-                      <div className="text-sm text-gray-600">Meses Payback</div>
+                      <div className="text-2xl font-bold text-gray-700">24</div>
+                      <div className="text-sm text-gray-600">Circuitos Analisados</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-secondary-500 to-primary-400 text-white py-3 rounded-xl font-semibold hover:shadow-thermal transition-all duration-300 group-hover:scale-105">
-                Ver Case Completo
+              <button className="w-full bg-gray-800 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all duration-300">
+                Ver Relatório
               </button>
             </ThermoCard>
           </div>
 
-          {/* Credenciais e Diferenciais Técnicos */}
-          <div className="mt-16">
-            <div className="bg-white rounded-3xl p-8 shadow-card relative overflow-hidden">
-              {/* Thermal background effect */}
-              <div className="absolute inset-0 opacity-3">
-                <svg className="w-full h-full" viewBox="0 0 400 300" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="credentialsThermal" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="var(--heat-orange)" stopOpacity="0.1" />
-                      <stop offset="50%" stopColor="var(--heat-red)" stopOpacity="0.05" />
-                      <stop offset="100%" stopColor="var(--cool-teal)" stopOpacity="0.1" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M0,80 Q100,60 200,80 T400,80 L400,220 Q300,200 200,220 T0,220 Z" 
-                        fill="url(#credentialsThermal)" 
-                        className="animate-pulse"
-                        style={{ animationDuration: '8s' }} />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-display font-semibold text-gray-900 text-center mb-8 relative z-10">
-                Credenciais e Diferenciais Técnicos
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
-                <div className="text-center group">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <NR10ReportIcon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-lg font-bold text-primary-400 mb-2">Relatórios</div>
-                  <div className="text-gray-600 text-sm">Conforme<br />NR-10</div>
-                  <div className="mt-2 text-xs text-gray-500">Documentação técnica completa</div>
-                </div>
-                
-                <div className="text-center group">
-                  <div className="w-16 h-16 bg-gradient-to-br from-secondary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <ThermographyReportIcon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-lg font-bold text-secondary-500 mb-2">Laudos</div>
-                  <div className="text-gray-600 text-sm">Termografia<br />Certificados</div>
-                  <div className="mt-2 text-xs text-gray-500">Análise termográfica profissional</div>
-                </div>
-                
-                <div className="text-center group">
-                  <div className="w-16 h-16 bg-gradient-to-br from-accent-500 to-primary-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <CalibratedEquipmentIcon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-lg font-bold text-accent-500 mb-2">Equipamentos</div>
-                  <div className="text-gray-600 text-sm">Calibrados<br />RBC</div>
-                  <div className="mt-2 text-xs text-gray-500">Precisão e confiabilidade garantidas</div>
-                </div>
-                
-                <div className="text-center group">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <ARTCreaIcon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-lg font-bold text-gray-900 mb-2">ART</div>
-                  <div className="text-gray-600 text-sm">CREA<br />RJ</div>
-                  <div className="mt-2 text-xs text-gray-500">Responsabilidade técnica assegurada</div>
-                </div>
-              </div>
-              
-              {/* Detalhes adicionais */}
-              <div className="mt-8 pt-6 border-t border-gray-100 relative z-10">
-                <div className="text-center max-w-3xl mx-auto">
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    <strong className="text-gray-900">Engenheiros CRE A certificados</strong> com experiência comprovada em 
-                    <strong className="text-primary-400"> termografia industrial</strong> e 
-                    <strong className="text-secondary-500"> diagnósticos elétricos</strong>. 
-                    Todos os nossos serviços são executados com equipamentos calibrados e documentados 
-                    conforme <strong className="text-accent-500">normas técnicas vigentes</strong>.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Dashboard Demo */}
-          <div className="mt-16">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-display font-semibold text-gray-900 mb-4">
-                Relatórios Interativos
-              </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Dashboard em tempo real com análises termográficas, KPIs de performance e monitoramento contínuo das suas instalações
-              </p>
-            </div>
-            <DashboardDemo />
-          </div>
-
-          {/* CTA para mais cases */}
+          {/* CTA Direto */}
           <div className="text-center mt-12">
-            <button className="bg-gradient-to-r from-primary-400 via-accent-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-thermal transition-all duration-300">
-              Ver Mais Cases de Sucesso
-            </button>
+            <div className="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+              <h3 className="text-2xl font-display font-semibold text-gray-900 mb-4">
+                Precisa de uma Análise?
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Engenheiros CRE A com equipamentos calibrados. Relatórios conforme NR-10.
+              </p>
+              <button className="bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-700 transition-all duration-300">
+                Solicitar Orçamento
+              </button>
+            </div>
           </div>
         </div>
       </section>
