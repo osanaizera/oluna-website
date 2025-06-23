@@ -1,0 +1,396 @@
+# Prompts Úteis para Claude Code - Projeto Ôluna Engenharia
+
+## Desenvolvimento de Componentes
+
+### Criar Componente Reutilizável
+```
+Crie um componente [NomeComponente] em components/common/ que:
+- Seja totalmente tipado com TypeScript
+- Tenha props bem definidas com interface
+- Seja acessível (ARIA labels, keyboard navigation)
+- Use Tailwind CSS para estilização
+- Inclua variantes (primary, secondary, etc)
+- Tenha testes unitários
+- Seja documentado com JSDoc
+```
+
+### Criar Seção de Página
+```
+Crie uma seção [NomeSeção] para a página [página] que:
+- Use Server Components
+- Seja responsiva (mobile-first)
+- Tenha animações suaves com Framer Motion
+- Otimize imagens com next/image
+- Inclua SEO tags apropriadas
+- Tenha loading skeleton
+```
+
+## Otimização e Performance
+
+### Otimizar Página para Core Web Vitals
+```
+Analise e otimize a página [página] para Core Web Vitals:
+- Identifique componentes que podem ser lazy loaded
+- Implemente code splitting onde apropriado
+- Otimize imagens (formato, tamanho, lazy loading)
+- Minimize JavaScript bundle
+- Implemente caching strategies
+- Adicione prefetch para links críticos
+```
+
+### Implementar ISR (Incremental Static Regeneration)
+```
+Configure ISR para a página [página]:
+- Defina revalidate time apropriado
+- Implemente fallback strategy
+- Configure error handling
+- Adicione loading states
+- Teste com diferentes cenários
+```
+
+## Formulários e Validação
+
+### Criar Formulário Completo
+```
+Crie um formulário de [tipo] com:
+- React Hook Form para gerenciamento
+- Zod para validação de schema
+- Feedback visual de erros
+- Loading state durante submissão
+- Success/error messages
+- Acessibilidade completa
+- Testes de integração
+```
+
+### Implementar Validação Customizada
+```
+Adicione validação customizada para [campo]:
+- Regex pattern apropriado
+- Mensagens de erro claras
+- Validação em tempo real
+- Formatação automática (máscaras)
+- Cross-field validation se necessário
+```
+
+## SEO e Meta Tags
+
+### Otimizar SEO da Página
+```
+Otimize o SEO da página [página]:
+- Meta tags completas (title, description, keywords)
+- Open Graph tags
+- Twitter Card tags
+- Schema.org structured data
+- Canonical URL
+- Sitemap entry
+- Robots.txt configuração
+```
+
+### Implementar Schema Markup
+```
+Adicione Schema.org markup para [tipo]:
+- Use o tipo apropriado (Organization, Service, etc)
+- Inclua todas as propriedades recomendadas
+- Valide com Google's Structured Data Testing Tool
+- Implemente como JSON-LD
+```
+
+## Testes
+
+### Criar Suite de Testes
+```
+Crie testes completos para [componente/página]:
+- Testes unitários com Jest
+- Testes de integração
+- Testes de acessibilidade
+- Testes de snapshot
+- Mock de dependências externas
+- Coverage mínimo de 80%
+```
+
+### Implementar Testes E2E
+```
+Crie testes E2E com Playwright para [fluxo]:
+- Setup e teardown apropriados
+- Testes em múltiplos navegadores
+- Testes mobile e desktop
+- Screenshots em falhas
+- Retry logic para flaky tests
+```
+
+## API e Integração
+
+### Criar Cliente API
+```
+Crie um cliente API para [serviço]:
+- Type-safe com TypeScript
+- Error handling robusto
+- Retry logic com exponential backoff
+- Request/response interceptors
+- Caching strategy
+- Testes mockados
+```
+
+### Implementar Webhook Handler
+```
+Crie um handler para webhook de [serviço]:
+- Validação de assinatura
+- Rate limiting
+- Error handling
+- Logging apropriado
+- Queue para processamento assíncrono
+- Testes com payload examples
+```
+
+## Componentes Complexos
+
+### Implementar Tabela de Dados
+```
+Crie uma tabela de dados com:
+- Sorting por colunas
+- Filtros avançados
+- Paginação server-side
+- Export para CSV/Excel
+- Seleção de linhas
+- Ações em bulk
+- Responsive design
+- Virtual scrolling para grandes datasets
+```
+
+### Criar Dashboard Analytics
+```
+Implemente um dashboard com:
+- Charts interativos (Chart.js/Recharts)
+- Real-time updates
+- Filtros por período
+- KPIs principais
+- Export de relatórios
+- Responsive grid layout
+- Loading states granulares
+```
+
+## Acessibilidade
+
+### Audit de Acessibilidade
+```
+Faça um audit completo de acessibilidade para [página/componente]:
+- WCAG 2.1 Level AA compliance
+- Keyboard navigation
+- Screen reader testing
+- Color contrast check
+- Focus management
+- ARIA labels apropriados
+- Skip links
+```
+
+### Implementar Navegação Acessível
+```
+Melhore a navegação para acessibilidade:
+- Skip to main content link
+- Keyboard trap prevention
+- Focus visible indicators
+- Breadcrumb navigation
+- ARIA landmarks
+- Announce route changes
+```
+
+## Performance e Otimização
+
+### Implementar Progressive Enhancement
+```
+Aplique progressive enhancement em [feature]:
+- Funcionalidade base sem JavaScript
+- Enhance com JavaScript quando disponível
+- Feature detection
+- Graceful degradation
+- Loading states apropriados
+```
+
+### Otimizar Bundle Size
+```
+Reduza o bundle size da aplicação:
+- Analise com webpack-bundle-analyzer
+- Identifique dependências pesadas
+- Implemente tree shaking
+- Code splitting por rota
+- Dynamic imports para features opcionais
+- Minimize CSS não utilizado
+```
+
+## Internacionalização
+
+### Preparar para i18n
+```
+Configure internacionalização:
+- Setup next-i18next
+- Estrutura de arquivos de tradução
+- Componente de language switcher
+- RTL support preparation
+- Date/number formatting
+- SEO para múltiplos idiomas
+```
+
+## Debugging e Monitoramento
+
+### Implementar Error Tracking
+```
+Configure error tracking com Sentry:
+- Setup para client e server
+- Source maps em produção
+- User context
+- Custom error boundaries
+- Performance monitoring
+- Release tracking
+```
+
+### Adicionar Logging Estruturado
+```
+Implemente logging system:
+- Winston ou Pino setup
+- Log levels apropriados
+- Structured logging format
+- Correlation IDs
+- Sensitive data filtering
+- Log aggregation ready
+```
+
+## DevOps e Deploy
+
+### Configurar CI/CD Pipeline
+```
+Setup pipeline completo:
+- Linting e formatting checks
+- Testes automatizados
+- Build validation
+- Lighthouse CI
+- Deploy preview para PRs
+- Semantic versioning
+- Changelog automático
+```
+
+### Implementar Feature Flags
+```
+Configure feature flags system:
+- Toggle features sem deploy
+- A/B testing capability
+- User targeting
+- Gradual rollout
+- Emergency kill switches
+- Analytics integration
+```
+
+## Comandos Rápidos
+
+### Análise de Código
+```
+Analise [arquivo/pasta] e sugira melhorias para:
+- Performance
+- Legibilidade
+- Manutenibilidade
+- Type safety
+- Padrões do projeto
+```
+
+### Refatoração
+```
+Refatore [componente/função] para:
+- Melhor separação de concerns
+- Reusabilidade
+- Testabilidade
+- Performance
+- Seguir padrões do projeto
+```
+
+### Documentação
+```
+Crie documentação para [componente/API]:
+- JSDoc completo
+- Exemplos de uso
+- Props/parameters table
+- Edge cases
+- Migration guide se aplicável
+```
+
+## Prompts para Situações Específicas
+
+### Migração de Biblioteca
+```
+Migre de [biblioteca antiga] para [biblioteca nova]:
+- Identifique breaking changes
+- Crie migration plan
+- Update gradualmente
+- Mantenha backwards compatibility
+- Teste extensivamente
+```
+
+### Implementar Design System
+```
+Crie componente do design system para [tipo]:
+- Tokens de design (cores, spacing, etc)
+- Variantes e estados
+- Composição flexível
+- Documentação visual
+- Testes de regressão visual
+```
+
+### Otimizar para Mobile
+```
+Otimize [página/componente] para mobile:
+- Touch targets adequados (48x48px min)
+- Gestures support
+- Viewport optimization
+- Offline capability
+- Reduced data usage
+- Battery optimization
+```
+
+## Templates de Código
+
+### Server Action Template
+```
+Crie um Server Action para [ação]:
+'use server'
+- Input validation com Zod
+- Error handling apropriado
+- Rate limiting
+- Logging
+- Type-safe return
+- Revalidate cache apropriado
+```
+
+### API Route Template
+```
+Crie uma API route para [endpoint]:
+- Method validation
+- Request body parsing
+- Authentication check
+- Rate limiting
+- Error responses padronizados
+- TypeScript types
+- OpenAPI documentation
+```
+
+## Manutenção e Updates
+
+### Atualizar Dependências
+```
+Atualize dependências do projeto:
+- Check breaking changes
+- Update incrementalmente
+- Teste cada update
+- Update lock file
+- Document changes
+- Fix deprecation warnings
+```
+
+### Security Audit
+```
+Faça security audit:
+- npm audit
+- Check OWASP top 10
+- Environment variables check
+- API security headers
+- Input sanitization
+- XSS prevention
+- CSRF protection
+```
