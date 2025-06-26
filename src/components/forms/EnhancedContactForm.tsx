@@ -443,7 +443,7 @@ export default function EnhancedContactForm() {
 
             <button
               onClick={() => {
-                const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5511999999999'
+                const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5521973498376'
                 const message = encodeURIComponent(
                   'Olá! Acabei de enviar uma solicitação pelo site e gostaria de acelerar o atendimento.'
                 )

@@ -377,7 +377,7 @@ export default function ContatoPage() {
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">Telefone</h3>
                         <p className="text-gray-600 mb-2">
                           <a
-                            href="tel:+5521999999999"
+                            href="tel:+5521973498376"
                             className="text-orange-600 font-medium hover:underline"
                           >
                             (21) 99999-9999
@@ -435,7 +435,7 @@ export default function ContatoPage() {
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">WhatsApp</h3>
                         <p className="text-gray-600 mb-2">
                           <a
-                            href="https://wa.me/5521999999999?text=Olá! Gostaria de solicitar um orçamento para termografia industrial."
+                            href="https://wa.me/5521973498376?text=Olá! Gostaria de solicitar um orçamento para termografia industrial."
                             className="text-green-600 font-medium hover:underline"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -567,7 +567,7 @@ export default function ContatoPage() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
-                  href="https://wa.me/5521999999999?text=Olá! Gostaria de solicitar um orçamento para termografia industrial."
+                  href="https://wa.me/5521973498376?text=Olá! Gostaria de solicitar um orçamento para termografia industrial."
                   className="bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -575,7 +575,7 @@ export default function ContatoPage() {
                   💬 WhatsApp
                 </a>
                 <a
-                  href="tel:+5521999999999"
+                  href="tel:+5521973498376"
                   className="border border-white/20 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all duration-300"
                 >
                   📞 Ligar Agora

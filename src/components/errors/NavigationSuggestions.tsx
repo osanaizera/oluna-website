@@ -243,7 +243,7 @@ export default function NavigationSuggestions() {
             Problemas críticos em sistemas elétricos? Nossa equipe está disponível para emergências.
           </Body>
           <a
-            href="tel:+5521999999999"
+            href="tel:+5521973498376"
             className="inline-block"
             aria-label="Ligar para emergência da Ôluna Engenharia"
           >

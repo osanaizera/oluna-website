@@ -134,7 +134,7 @@ export default function ContactSection() {
                       />
                     </svg>
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Formulário Detalhado</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Solicite um Orçamento</h4>
                   <p className="text-sm text-gray-600 mb-4">
                     Conte-nos sobre sua necessidade específica
                   </p>
@@ -147,7 +147,7 @@ export default function ContactSection() {
                     const message = encodeURIComponent(
                       'Olá! Gostaria de solicitar uma análise gratuita da minha operação. Podem me ajudar?'
                     )
-                    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank')
+                    window.open(`https://wa.me/5521973498376?text=${message}`, '_blank')
                   }}
                   className="group p-6 border-2 border-green-200 rounded-2xl hover:border-green-400 hover:bg-green-50 transition-all duration-300"
                 >
@@ -163,7 +163,7 @@ export default function ContactSection() {
 
                 {/* Telefone */}
                 <button
-                  onClick={() => window.open('tel:+5511999999999')}
+                  onClick={() => window.open('tel:+5521973498376')}
                   className="group p-6 border-2 border-blue-200 rounded-2xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-300"
                 >
                   <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">

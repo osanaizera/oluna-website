@@ -114,7 +114,7 @@ export function formatPhoneForSchema(phone: string): string {
   } else if (digits.length === 11) {
     return `+55${digits}`
   } else if (digits.length === 10) {
-    return `+5521${digits}`
+    return `+5521973498376`
   }
 
   return phone
