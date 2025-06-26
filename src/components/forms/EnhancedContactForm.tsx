@@ -16,33 +16,39 @@ import { trackQualifiedLead } from '@/utils/businessTracking'
 const SERVICES = [
   {
     id: 'termografia',
-    name: 'Termografia Industrial',
+    name: 'Termografia',
     description: 'Análise térmica de equipamentos e instalações',
     icon: '🔥',
   },
   {
-    id: 'diagnostico',
-    name: 'Diagnóstico Energético',
-    description: 'Avaliação de eficiência energética',
+    id: 'qualidade-energia',
+    name: 'Análise de Qualidade de Energia',
+    description: 'Avaliação de qualidade e eficiência energética',
     icon: '⚡',
+  },
+  {
+    id: 'consultoria-bess',
+    name: 'Consultoria para Projeto de BESS',
+    description: 'Sistemas de armazenamento de energia em baterias',
+    icon: '🔋',
+  },
+  {
+    id: 'analise-carregadores',
+    name: 'Análise de Capacidade para Carregadores Elétricos',
+    description: 'Estudo para instalação de pontos de recarga',
+    icon: '🔌',
+  },
+  {
+    id: 'energia-solar',
+    name: 'Projeto de Energia Solar Local',
+    description: 'Dimensionamento e projeto de sistemas fotovoltaicos',
+    icon: '☀️',
   },
   {
     id: 'laudos',
     name: 'Laudos NR-10/12',
     description: 'Laudos técnicos obrigatórios',
     icon: '📋',
-  },
-  {
-    id: 'monitoramento',
-    name: 'Monitoramento Contínuo',
-    description: 'Acompanhamento em tempo real',
-    icon: '📊',
-  },
-  {
-    id: 'consultoria',
-    name: 'Consultoria Energética',
-    description: 'Assessoria especializada',
-    icon: '💡',
   },
   {
     id: 'outro',
@@ -829,7 +835,7 @@ export default function EnhancedContactForm() {
                     <label
                       key={level.id}
                       className={cn(
-                        'w-full p-4 rounded-lg border-2 transition-all duration-300 text-left cursor-pointer hover:border-gray-300 focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2',
+                        'block w-full p-4 rounded-lg border-2 transition-all duration-300 text-left cursor-pointer hover:border-gray-300 focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2',
                         formData.urgency === level.id
                           ? `${level.borderColor} ${level.bgColor} shadow-md`
                           : 'border-gray-200'
@@ -843,15 +849,13 @@ export default function EnhancedContactForm() {
                         onChange={(e) => handleInputChange('urgency', e.target.value)}
                         className="sr-only"
                       />
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="text-xl" aria-hidden="true">
-                            {level.icon}
-                          </span>
-                          <div>
-                            <div className={cn('font-medium', level.color)}>{level.name}</div>
-                            <div className="text-sm text-gray-600 mt-1">{level.description}</div>
-                          </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-xl flex-shrink-0" aria-hidden="true">
+                          {level.icon}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <div className={cn('font-medium', level.color)}>{level.name}</div>
+                          <div className="text-sm text-gray-600 mt-1">{level.description}</div>
                         </div>
                         {formData.urgency === level.id && (
                           <div className="w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center">
@@ -1100,13 +1104,13 @@ export default function EnhancedContactForm() {
                   Enviando...
                 </>
               ) : (
-                <>🔥 Solicitar Análise Gratuita</>
+                <>🔥 Solicitar Orçamento</>
               )}
             </span>
           </button>
 
           <p className="text-sm text-gray-500 mt-4">
-            Resposta garantida em até 24 horas • Análise inicial gratuita
+            Resposta garantida em até 24 horas • Orçamento sem compromisso
           </p>
         </div>
       </form>

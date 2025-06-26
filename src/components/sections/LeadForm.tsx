@@ -178,7 +178,7 @@ export default function LeadForm() {
           Solicitação Enviada com Sucesso!
         </h3>
         <p className="text-gray-600 mb-8 max-w-md mx-auto">
-          Nossa equipe entrará em contato em até 24 horas para agendar uma análise inicial gratuita.
+          Nossa equipe entrará em contato em até 24 horas para agendar uma orçamento detalhado.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="bg-gradient-to-r from-primary-400 to-accent-500 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-thermal transition-all duration-300">
@@ -220,7 +220,7 @@ export default function LeadForm() {
         aria-label="Formulário de solicitação de análise"
       >
         <ScreenReaderOnly>
-          <h2>Formulário de solicitação de análise gratuita</h2>
+          <h2>Formulário de solicitação de orçamento</h2>
           <p>
             Este formulário possui {totalSteps} etapas. Use os botões de navegação para avançar ou
             voltar entre as etapas.

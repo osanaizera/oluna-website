@@ -13,7 +13,7 @@ import { generateServiceKeywords } from '@/utils/seo'
 export const metadata: Metadata = generatePageMetadata({
   title: 'Termografia Industrial e Diagnósticos Elétricos | Manutenção Preditiva',
   description:
-    'Engenheiros CRE A especialistas em termografia industrial, diagnósticos elétricos e eficiência energética. Detecte falhas antes que aconteçam, reduza downtime e garanta conformidade NR-10/12. Análise gratuita em 24h.',
+    'Engenheiros CRE A especialistas em termografia industrial, diagnósticos elétricos e eficiência energética. Detecte falhas antes que aconteçam, reduza downtime e garanta conformidade NR-10/12. Orçamento em 24h.',
   keywords: generateServiceKeywords('termografia industrial'),
   canonical: '/',
   ogTitle: 'Ôluna Engenharia - Termografia Industrial Rio de Janeiro',
@@ -112,8 +112,8 @@ export default function HomePage() {
       offers: [
         {
           '@type': 'Offer',
-          name: 'Análise Termográfica Gratuita',
-          description: 'Análise inicial gratuita em 24 horas',
+          name: 'Orçamento de Termografia',
+          description: 'Orçamento completo em 24 horas',
           price: '0',
           priceCurrency: 'BRL',
         },
@@ -705,24 +705,6 @@ export default function HomePage() {
               </ThermoCard>
             </div>
 
-            {/* CTA Direto */}
-            <div className="text-center mt-12">
-              <div className="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
-                <h3 className="text-2xl font-display font-semibold text-gray-900 mb-4">
-                  Precisa de uma Análise?
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Engenheiros CRE A com equipamentos calibrados. Relatórios conforme NR-10.
-                </p>
-                <button
-                  type="button"
-                  className="bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-700 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
-                  aria-label="Solicitar orçamento para análise termográfica"
-                >
-                  Solicitar Orçamento
-                </button>
-              </div>
-            </div>
           </div>
         </section>
 

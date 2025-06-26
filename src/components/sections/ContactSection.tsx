@@ -145,7 +145,7 @@ export default function ContactSection() {
                 <button
                   onClick={() => {
                     const message = encodeURIComponent(
-                      'Olá! Gostaria de solicitar uma análise gratuita da minha operação. Podem me ajudar?'
+                      'Olá! Gostaria de solicitar uma um orçamento para minha operação. Podem me ajudar?'
                     )
                     window.open(`https://wa.me/5521973498376?text=${message}`, '_blank')
                   }}
@@ -204,7 +204,7 @@ export default function ContactSection() {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span>Análise gratuita</span>
+                <span>Orçamento rápido</span>
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function ContactSection() {
               </button>
 
               <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-                Solicitar Análise Gratuita
+                Solicitar Orçamento
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Quanto mais detalhes você fornecer, mais precisa será nossa análise inicial.

@@ -166,7 +166,7 @@ export default function ServicesSimple() {
                 <button className="bg-gradient-to-r from-primary-400 via-accent-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
                   Falar com Especialista
                 </button>
-                <p className="text-xs text-gray-500 mt-2">Análise inicial gratuita</p>
+                <p className="text-xs text-gray-500 mt-2">Orçamento sem compromisso</p>
               </div>
             </div>
           </div>
