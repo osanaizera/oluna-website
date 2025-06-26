@@ -4,137 +4,135 @@ import ContactSection from '@/components/sections/ContactSection'
 import { ThermographyIcon, EnergyDiagnosticIcon, SecurityIcon, ConsultingIcon, IndustryIcon, ROIIcon, MonitoringIcon, NR10ReportIcon, ThermographyReportIcon, CalibratedEquipmentIcon, ARTCreaIcon } from '@/components/icons/ServiceIcons'
 import { ThermoCard } from '@/components/effects/ThermoScroll'
 import DashboardDemo from '@/components/demo/DashboardDemo'
+import { generatePageMetadata, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { generateServiceKeywords } from '@/utils/seo'
 
-export const metadata: Metadata = {
-  title: 'Ôluna Engenharia - Termografia Industrial e Diagnósticos Elétricos | Manutenção Preditiva',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Termografia Industrial e Diagnósticos Elétricos | Manutenção Preditiva',
   description: 'Engenheiros CRE A especialistas em termografia industrial, diagnósticos elétricos e eficiência energética. Detecte falhas antes que aconteçam, reduza downtime e garanta conformidade NR-10/12. Análise gratuita em 24h.',
-  keywords: [
-    'termografia industrial',
-    'diagnóstico elétrico',
-    'inspeção termográfica',
-    'manutenção preditiva',
-    'eficiência energética',
-    'laudos NR-10',
-    'laudos NR-12',
-    'monitoramento contínuo',
-    'engenheiros CRE A',
-    'análise de qualidade energética',
-    'fator de potência',
-    'harmônicas elétricas',
-    'consultoria energética',
-    'São Paulo',
-    'Rio de Janeiro'
-  ].join(', '),
-  authors: [{ name: 'Ôluna Engenharia' }],
-  creator: 'Ôluna Engenharia',
-  publisher: 'Ôluna Engenharia',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL('https://oluna-engenharia.com.br'),
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    title: 'Ôluna Engenharia - Termografia Industrial e Diagnósticos Elétricos',
-    description: 'Engenheiros CRE A especialistas em termografia industrial e diagnósticos elétricos. Detecte falhas antes que aconteçam e garanta a continuidade operacional.',
-    url: 'https://oluna-engenharia.com.br',
-    siteName: 'Ôluna Engenharia',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Ôluna Engenharia - Termografia Industrial',
-      },
-    ],
-    locale: 'pt_BR',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Ôluna Engenharia - Termografia Industrial',
-    description: 'Detecte falhas antes que aconteçam com nossa expertise em termografia industrial e diagnósticos elétricos.',
-    images: ['/og-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'google-site-verification-code',
-  },
-}
+  keywords: generateServiceKeywords('termografia industrial'),
+  canonical: '/',
+  ogTitle: 'Ôluna Engenharia - Termografia Industrial Rio de Janeiro',
+  ogDescription: 'Detecte falhas antes que aconteçam com nossa expertise em termografia industrial e diagnósticos elétricos. Engenheiros CRE A atuando no Rio de Janeiro e região.',
+  twitterTitle: 'Termografia Industrial RJ - Diagnósticos Elétricos',
+  twitterDescription: 'Engenheiros especialistas em termografia industrial. Laudos NR-10, análise preditiva e eficiência energética no Rio de Janeiro.',
+})
 
 export default function HomePage() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Ôluna Engenharia",
-    "description": "Engenheiros especialistas em termografia industrial, diagnósticos elétricos e eficiência energética",
-    "url": "https://oluna-engenharia.com.br",
-    "logo": "https://oluna-engenharia.com.br/logo.png",
-    "image": "https://oluna-engenharia.com.br/og-image.jpg",
-    "telephone": "+55-11-99999-9999",
-    "email": "contato@oluna-engenharia.com.br",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "BR",
-      "addressRegion": "SP"
+  // Enhanced structured data for homepage
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Início', url: '/' }
+  ])
+
+  const faqSchema = generateFAQSchema([
+    {
+      question: 'O que é termografia industrial?',
+      answer: 'A termografia industrial é uma técnica de inspeção não destrutiva que utiliza câmeras térmicas para detectar variações de temperatura em equipamentos elétricos e mecânicos, permitindo identificar problemas antes que causem falhas.'
     },
-    "serviceType": [
-      "Termografia Industrial",
-      "Diagnóstico Elétrico", 
-      "Laudos NR-10",
-      "Laudos NR-12",
-      "Monitoramento Contínuo",
-      "Consultoria Energética"
-    ],
-    "areaServed": {
-      "@type": "Country",
-      "name": "Brasil"
+    {
+      question: 'Qual a importância dos laudos NR-10?',
+      answer: 'Os laudos NR-10 são obrigatórios por lei e garantem a segurança das instalações elétricas. Eles identificam riscos, avaliam conformidades e propõem medidas corretivas para prevenir acidentes.'
     },
-    "hasCredential": {
-      "@type": "EducationalOccupationalCredential",
-      "credentialCategory": "CRE A",
-      "recognizedBy": {
-        "@type": "Organization",
-        "name": "CREA"
-      }
+    {
+      question: 'Com que frequência devo fazer inspeção termográfica?',
+      answer: 'Recomendamos inspeções termográficas semestrais para equipamentos críticos e anuais para equipamentos de menor criticidade, seguindo as normas técnicas e o plano de manutenção preditiva.'
     },
-    "offers": {
-      "@type": "Offer",
-      "description": "Análise gratuita em 24 horas",
-      "price": "0",
-      "priceCurrency": "BRL"
+    {
+      question: 'A Ôluna atende em quais regiões?',
+      answer: 'Atendemos Rio de Janeiro, Grande Rio, Região dos Lagos (Cabo Frio, Búzios, Arraial), Serra Carioca (Petrópolis, Teresópolis, Nova Friburgo) e toda a região metropolitana.'
     },
-    "review": {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Clientes Ôluna"
-      }
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "150",
-      "bestRating": "5"
+    {
+      question: 'Quanto tempo leva para receber o relatório?',
+      answer: 'Nossos relatórios técnicos são entregues em até 48 horas após a inspeção, incluindo análise detalhada, fotos termográficas, diagnósticos e recomendações de ações corretivas.'
     }
+  ])
+
+  const homePageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Ôluna Engenharia - Termografia Industrial Rio de Janeiro',
+    description: 'Engenheiros CRE A especialistas em termografia industrial, diagnósticos elétricos e eficiência energética no Rio de Janeiro',
+    url: 'https://oluna-engenharia.com.br',
+    mainEntity: {
+      '@type': 'ProfessionalService',
+      name: 'Ôluna Engenharia',
+      description: 'Serviços especializados em termografia industrial e diagnósticos elétricos',
+      serviceType: [
+        'Termografia Industrial',
+        'Diagnóstico Elétrico',
+        'Inspeção Termográfica',
+        'Laudos NR-10',
+        'Laudos NR-12',
+        'Monitoramento Contínuo',
+        'Análise de Qualidade Energética',
+        'Consultoria Energética',
+        'Manutenção Preditiva'
+      ],
+      provider: {
+        '@type': 'Organization',
+        name: 'Ôluna Engenharia',
+        url: 'https://oluna-engenharia.com.br',
+        telephone: '+55-21-99999-9999',
+        email: 'contato@oluna-engenharia.com.br',
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'BR',
+          addressRegion: 'RJ',
+          addressLocality: 'Rio de Janeiro'
+        },
+        hasCredential: {
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: 'CRE A',
+          recognizedBy: {
+            '@type': 'Organization',
+            name: 'CREA'
+          }
+        }
+      },
+      areaServed: [
+        'Rio de Janeiro',
+        'Niterói',
+        'Cabo Frio',
+        'Búzios',
+        'Arraial do Cabo',
+        'Petrópolis',
+        'Teresópolis',
+        'Nova Friburgo'
+      ],
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Análise Termográfica Gratuita',
+          description: 'Análise inicial gratuita em 24 horas',
+          price: '0',
+          priceCurrency: 'BRL'
+        },
+        {
+          '@type': 'Offer',
+          name: 'Termografia Industrial Completa',
+          description: 'Inspeção termográfica completa com relatório técnico',
+          category: 'Termografia'
+        },
+        {
+          '@type': 'Offer',
+          name: 'Laudos NR-10',
+          description: 'Laudos técnicos para conformidade NR-10',
+          category: 'Segurança'
+        }
+      ],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '150',
+        bestRating: '5'
+      }
+    }
+  }
+
+  // Combine all schemas for this page
+  const combinedPageSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [homePageSchema, breadcrumbSchema, faqSchema]
   }
 
   return (
@@ -142,12 +140,12 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
+          __html: JSON.stringify(combinedPageSchema, null, 2),
         }}
       />
       <div className="min-h-screen">
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <section id="hero" role="banner" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" aria-label="Seção principal - Ôluna Engenharia">
         {/* Advanced Thermal Background */}
         <div className="absolute inset-0">
           {/* Animated Thermal Waves */}
@@ -255,7 +253,7 @@ export default function HomePage() {
             </div>
 
             {/* Headline Principal */}
-            <h1 className="text-5xl md:text-7xl font-display font-semibold mb-6 leading-tight">
+            <h1 className="text-hero mb-6 text-white">
               Veja o{' '}
               <span 
                 className="bg-gradient-to-r from-primary-400 via-accent-500 to-secondary-500 bg-clip-text text-transparent"
@@ -267,7 +265,7 @@ export default function HomePage() {
             </h1>
 
             {/* Subtítulo */}
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-responsive-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Transformamos dados termográficos em ações preventivas. 
               <strong className="text-white"> Detecte problemas elétricos, evite paradas não programadas</strong> e 
               garanta a segurança da sua operação.
@@ -292,10 +290,18 @@ export default function HomePage() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24">
-              <button className="bg-gradient-to-r from-primary-400 to-accent-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-thermal transition-all duration-300 hover:scale-105">
+              <button 
+                type="button"
+                className="bg-gradient-to-r from-primary-400 to-accent-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-thermal transition-all duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                aria-label="Solicitar orçamento - Ir para seção de contato"
+              >
                 Solicitar Orçamento
               </button>
-              <button className="border border-white/20 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all duration-300">
+              <button 
+                type="button"
+                className="border border-white/20 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                aria-label="Ver cases de sucesso - Ir para seção de casos"
+              >
                 Ver Cases de Sucesso
               </button>
             </div>
@@ -304,12 +310,22 @@ export default function HomePage() {
           
           {/* Indicador de scroll */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-            <div className="flex flex-col items-center gap-2 text-gray-400">
+            <button 
+              type="button"
+              className="flex flex-col items-center gap-2 text-gray-400 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 rounded-lg p-2"
+              aria-label="Rolar para descobrir nossos serviços"
+              onClick={() => {
+                const servicesSection = document.getElementById('servicos')
+                if (servicesSection) {
+                  servicesSection.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+            >
               <span className="text-sm">Descubra nossos serviços</span>
-              <div className="w-6 h-6 border-2 border-gray-400 rounded-full flex items-center justify-center animate-pulse">
+              <div className="w-6 h-6 border-2 border-gray-400 rounded-full flex items-center justify-center animate-pulse" aria-hidden="true">
                 <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </section>
@@ -319,7 +335,7 @@ export default function HomePage() {
       <ServicesCarousel />
 
       {/* Seção Sobre */}
-      <section id="sobre" className="py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
+      <section id="sobre" className="py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900" aria-label="Sobre a Ôluna Engenharia">
         {/* Simplified Thermal Background */}
         <div className="absolute inset-0 opacity-10">
           <div 
@@ -341,7 +357,7 @@ export default function HomePage() {
               <span className="text-white font-medium">Engenharia Carioca</span>
             </div>
             
-            <h2 className="text-5xl md:text-6xl font-display font-bold text-white mb-6">
+            <h2 className="text-responsive-5xl font-display font-bold text-white mb-6">
               Sobre a{' '}
               <span 
                 className="transition-all duration-1000"
@@ -354,7 +370,7 @@ export default function HomePage() {
               </span>
             </h2>
             
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-responsive-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Engenharia especializada com mais de 25 anos de experiência na indústria, 
               atuando no Rio de Janeiro, Região dos Lagos e Serra Carioca.
             </p>
@@ -459,7 +475,7 @@ export default function HomePage() {
       </section>
 
       {/* Seção de Cases */}
-      <section id="cases" className="py-20 bg-gray-50 relative overflow-hidden">
+      <section id="cases" className="py-20 bg-gray-50 relative overflow-hidden" aria-label="Cases de sucesso">
         {/* Thermal Background for Cases */}
         <div className="absolute inset-0">
           {/* Animated background waves */}
@@ -542,7 +558,7 @@ export default function HomePage() {
             <ThermoCard delay={0} className="shadow-card hover:shadow-card-hover transition-all duration-500 group">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                  <ThermographyIcon className="w-6 h-6 text-gray-700" />
+                  <ThermographyIcon className="w-6 h-6 text-gray-700" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="text-xl font-display font-semibold text-gray-900">
@@ -584,7 +600,11 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <button className="w-full bg-gray-800 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all duration-300">
+              <button 
+                type="button"
+                className="w-full bg-gray-800 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+                aria-label="Ver relatório do case Hotel Resort - Cabo Frio"
+              >
                 Ver Relatório
               </button>
             </ThermoCard>
@@ -593,7 +613,7 @@ export default function HomePage() {
             <ThermoCard delay={300} className="shadow-card hover:shadow-card-hover transition-all duration-500 group">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                  <EnergyDiagnosticIcon className="w-6 h-6 text-gray-700" />
+                  <EnergyDiagnosticIcon className="w-6 h-6 text-gray-700" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="text-xl font-display font-semibold text-gray-900">
@@ -635,7 +655,11 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <button className="w-full bg-gray-800 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all duration-300">
+              <button 
+                type="button"
+                className="w-full bg-gray-800 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+                aria-label="Ver relatório do case Condomínio Empresarial"
+              >
                 Ver Relatório
               </button>
             </ThermoCard>
@@ -650,7 +674,11 @@ export default function HomePage() {
               <p className="text-gray-600 mb-6">
                 Engenheiros CRE A com equipamentos calibrados. Relatórios conforme NR-10.
               </p>
-              <button className="bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-700 transition-all duration-300">
+              <button 
+                type="button"
+                className="bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-700 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+                aria-label="Solicitar orçamento para análise termográfica"
+              >
                 Solicitar Orçamento
               </button>
             </div>

@@ -1,10 +1,19 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation'
+import { useAnnouncer } from '@/hooks/useAnnouncer'
+import ScreenReaderOnly from '@/components/common/ScreenReaderOnly'
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeNavItem, setActiveNavItem] = useState<string | null>(null)
+  const [focusedNavIndex, setFocusedNavIndex] = useState<number>(-1)
+  const headerRef = useRef<HTMLElement>(null)
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
+  const { announcePolite, announceAssertive } = useAnnouncer()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,7 +24,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId: string, itemLabel?: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
       const headerHeight = 64 // h-16 = 64px
@@ -24,8 +33,34 @@ export default function Header() {
         top: elementPosition,
         behavior: 'smooth'
       })
+      
+      // Announce navigation to screen readers
+      if (itemLabel) {
+        announcePolite(`Navegando para ${itemLabel}`)
+      }
+      
+      // Focus the target section for screen readers
+      setTimeout(() => {
+        element.focus()
+        element.scrollIntoView()
+      }, 300)
     }
+    
     setIsMobileMenuOpen(false)
+    setActiveNavItem(sectionId)
+  }
+
+  const toggleMobileMenu = () => {
+    const newState = !isMobileMenuOpen
+    setIsMobileMenuOpen(newState)
+    
+    // Announce menu state to screen readers
+    announcePolite(newState ? 'Menu principal aberto' : 'Menu principal fechado')
+    
+    // Manage focus when menu closes
+    if (!newState && mobileMenuButtonRef.current) {
+      mobileMenuButtonRef.current.focus()
+    }
   }
 
   const navItems = [
@@ -36,14 +71,52 @@ export default function Header() {
     { id: 'contato', label: 'Contato', target: 'contato' }
   ]
 
+  // Keyboard navigation for menu items
+  const handleNavKeyDown = (event: React.KeyboardEvent, index: number) => {
+    switch (event.key) {
+      case 'ArrowDown':
+      case 'ArrowRight':
+        event.preventDefault()
+        const nextIndex = (index + 1) % navItems.length
+        setFocusedNavIndex(nextIndex)
+        break
+      case 'ArrowUp':
+      case 'ArrowLeft':
+        event.preventDefault()
+        const prevIndex = (index - 1 + navItems.length) % navItems.length
+        setFocusedNavIndex(prevIndex)
+        break
+      case 'Home':
+        event.preventDefault()
+        setFocusedNavIndex(0)
+        break
+      case 'End':
+        event.preventDefault()
+        setFocusedNavIndex(navItems.length - 1)
+        break
+      case 'Escape':
+        if (isMobileMenuOpen) {
+          event.preventDefault()
+          toggleMobileMenu()
+        }
+        break
+    }
+  }
+
   return (
     <>
-      <header 
+      <motion.header 
+        ref={headerRef}
+        role="banner"
+        aria-label="Cabeçalho principal"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
             ? 'bg-white/98 backdrop-blur-lg shadow-lg border-b border-gray-100' 
             : 'bg-gray-900/90 backdrop-blur-md'
         }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         {/* Subtle Thermal Enhancement */}
         <div className="absolute inset-0 opacity-3">
@@ -57,13 +130,21 @@ export default function Header() {
         <div className="container mx-auto px-4 lg:px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div 
-              className="flex items-center cursor-pointer group relative"
-              onClick={() => scrollToSection('hero')}
+            <motion.button 
+              type="button"
+              className="flex items-center cursor-pointer group relative focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-lg p-2"
+              onClick={() => scrollToSection('hero', 'página inicial')}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              aria-label="Ôluna Engenharia - Voltar ao início"
             >
-              <div className="w-9 h-9 bg-gradient-to-br from-primary-400 to-accent-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-105 transition-transform duration-200 shadow-sm">
+              <motion.div 
+                className="w-9 h-9 bg-gradient-to-br from-primary-400 to-accent-500 rounded-lg flex items-center justify-center mr-3 shadow-sm"
+                whileHover={{ rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              >
                 <span className="text-white font-bold text-lg">Ô</span>
-              </div>
+              </motion.div>
               <div className="flex flex-col">
                 <span className={`text-lg font-display font-semibold leading-tight transition-colors duration-200 ${
                   isScrolled ? 'text-gray-900' : 'text-white drop-shadow-md'
@@ -76,42 +157,66 @@ export default function Header() {
                   Termografia & Diagnósticos
                 </span>
               </div>
-            </div>
+            </motion.button>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1">
-              {navItems.map((item) => (
+            <nav 
+              id="nav-menu"
+              className="hidden lg:flex items-center space-x-1"
+              role="navigation"
+              aria-label="Menu principal"
+            >
+              {navItems.map((item, index) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.target)}
-                  className={`px-4 py-2 text-sm font-medium transition-all duration-200 relative group rounded-md ${
+                  type="button"
+                  onClick={() => scrollToSection(item.target, item.label)}
+                  onKeyDown={(e) => handleNavKeyDown(e, index)}
+                  className={`px-4 py-2 text-sm font-medium transition-all duration-200 relative group rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
                     isScrolled 
                       ? 'text-gray-700 hover:text-primary-600 hover:bg-gray-50' 
                       : 'text-white/95 hover:text-white hover:bg-white/10 drop-shadow-sm'
-                  }`}
+                  } ${activeNavItem === item.target ? 'bg-primary-50 text-primary-600' : ''}`}
+                  aria-label={`Navegar para ${item.label}`}
+                  aria-current={activeNavItem === item.target ? 'page' : undefined}
                 >
                   {item.label}
                   {/* Active indicator */}
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500 group-hover:w-8 transition-all duration-200"></div>
+                  <motion.div 
+                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: 32 }}
+                    transition={{ duration: 0.2 }}
+                  />
                 </button>
               ))}
             </nav>
 
             {/* CTA Button Desktop */}
             <div className="hidden lg:flex items-center">
-              <button 
-                onClick={() => scrollToSection('contato')}
-                className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:shadow-lg transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2"
+              <motion.button 
+                type="button"
+                onClick={() => scrollToSection('contato', 'seção de contato')}
+                className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-5 py-2.5 rounded-lg font-semibold text-sm shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                aria-label="Falar com especialista - Ir para contato"
               >
                 Falar com Especialista
-              </button>
+              </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 rounded-md transition-colors duration-200 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary-400"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
+              ref={mobileMenuButtonRef}
+              type="button"
+              className="lg:hidden p-2 rounded-md transition-colors duration-200 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+              onClick={toggleMobileMenu}
+              aria-label={isMobileMenuOpen ? "Fechar menu principal" : "Abrir menu principal"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-haspopup="true"
             >
               <div className="w-6 h-6 relative">
                 <span 
@@ -135,34 +240,52 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu */}
-        <div 
-          className={`lg:hidden bg-white/98 backdrop-blur-lg border-t border-gray-200 transition-all duration-300 ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          } overflow-hidden shadow-lg`}
-        >
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              id="mobile-menu"
+              className="lg:hidden bg-white/98 backdrop-blur-lg border-t border-gray-200 shadow-lg overflow-hidden"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              role="navigation"
+              aria-label="Menu principal móvel"
+            >
           <nav className="container mx-auto px-4 py-6">
             <div className="space-y-2">
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.target)}
-                  className="block w-full text-left text-gray-700 font-medium py-3 px-4 rounded-lg hover:text-primary-600 hover:bg-gray-50 transition-all duration-200"
+                  type="button"
+                  onClick={() => scrollToSection(item.target, item.label)}
+                  onKeyDown={(e) => handleNavKeyDown(e, index)}
+                  className="block w-full text-left text-gray-700 font-medium py-3 px-4 rounded-lg hover:text-primary-600 hover:bg-gray-50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                  aria-label={`Navegar para ${item.label}`}
+                  role="menuitem"
                 >
                   {item.label}
                 </button>
               ))}
               <div className="pt-4 border-t border-gray-200 mt-4">
-                <button 
-                  onClick={() => scrollToSection('contato')}
-                  className="w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2"
+                <motion.button 
+                  type="button"
+                  onClick={() => scrollToSection('contato', 'seção de contato')}
+                  className="w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-3 rounded-lg font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  aria-label="Falar com especialista - Ir para contato"
+                  role="menuitem"
                 >
                   Falar com Especialista
-                </button>
+                </motion.button>
               </div>
             </div>
           </nav>
-        </div>
-      </header>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
 
       {/* Spacer para compensar header fixo */}
       <div className="h-16"></div>
