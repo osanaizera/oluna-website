@@ -88,7 +88,7 @@ export default function ServicesSimple() {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <div
               key={service.id}
               className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-100"

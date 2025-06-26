@@ -4,18 +4,8 @@ import ContactSection from '@/components/sections/ContactSection'
 import {
   ThermographyIcon,
   EnergyDiagnosticIcon,
-  SecurityIcon,
-  ConsultingIcon,
-  IndustryIcon,
-  ROIIcon,
-  MonitoringIcon,
-  NR10ReportIcon,
-  ThermographyReportIcon,
-  CalibratedEquipmentIcon,
-  ARTCreaIcon,
 } from '@/components/icons/ServiceIcons'
 import { ThermoCard } from '@/components/effects/ThermoScroll'
-import DashboardDemo from '@/components/demo/DashboardDemo'
 import ScrollIndicator from '@/components/common/ScrollIndicator'
 import { generatePageMetadata, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import { generateServiceKeywords } from '@/utils/seo'
@@ -456,7 +446,7 @@ export default function HomePage() {
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
                     <div className="text-4xl font-bold text-white mb-2">100%</div>
                     <div className="text-white font-medium mb-1">Engenheiros</div>
-                    <div className="text-gray-300 text-sm">CRE A</div>
+                    <div className="text-gray-300 text-sm">CREA</div>
                   </div>
 
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">

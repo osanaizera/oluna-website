@@ -97,20 +97,8 @@ const services = [
 
 export default function ServicesSection() {
   const [activeService, setActiveService] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
-      threshold: 0.1,
-    })
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
 
   // Auto-rotate services
   useEffect(() => {

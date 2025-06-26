@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import LeadForm from './LeadForm'
 import EnhancedContactForm from '@/components/forms/EnhancedContactForm'
-import { AnalysisIcon, SpeedIcon, SecurityIcon } from '@/components/icons/ServiceIcons'
 
 export default function ContactSection() {
   const [showForm, setShowForm] = useState(false)

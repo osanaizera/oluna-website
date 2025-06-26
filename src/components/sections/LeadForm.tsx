@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useAnnouncer } from '@/hooks/useAnnouncer'
 import ScreenReaderOnly from '@/components/common/ScreenReaderOnly'
 import FocusManager from '@/components/common/FocusManager'

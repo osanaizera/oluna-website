@@ -61,7 +61,7 @@ export interface IErrorProps {
 /**
  * Estado comum de requisições/operações
  */
-export interface IAsyncState<T = any> {
+export interface IAsyncState<T = unknown> {
   data?: T
   loading: boolean
   error?: string | null
@@ -284,7 +284,7 @@ export interface IFormField {
     minLength?: number
     maxLength?: number
     pattern?: RegExp
-    custom?: (value: any) => string | null
+    custom?: (value: unknown) => string | null
   }
 }
 
@@ -364,7 +364,7 @@ export interface IQuoteForm extends IContactForm {
 /**
  * Resposta padrão da API
  */
-export interface IApiResponse<T = any> {
+export interface IApiResponse<T = unknown> {
   success: boolean
   data?: T
   message?: string
