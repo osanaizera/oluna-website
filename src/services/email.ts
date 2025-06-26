@@ -41,21 +41,30 @@ export class ResendProvider implements EmailProvider {
 
   async send(options: EmailOptions): Promise<boolean> {
     try {
-      // TODO: Install resend package: npm install resend
-      // const { Resend } = require('resend')
-      // const resend = new Resend(this.apiKey)
+      // Verificar se estamos em modo de desenvolvimento sem API key
+      if (this.apiKey === 'dev-mode') {
+        console.log('📧 Resend Email (development mode):', {
+          from: options.from,
+          to: options.to,
+          subject: options.subject,
+        })
+        return true
+      }
 
-      // const result = await resend.emails.send({
-      //   from: options.from,
-      //   to: Array.isArray(options.to) ? options.to : [options.to],
-      //   subject: options.subject,
-      //   html: options.html,
-      //   text: options.text,
-      //   attachments: options.attachments
-      // })
+      const { Resend } = require('resend')
+      const resend = new Resend(this.apiKey)
 
-      // Simulação por enquanto
-      console.log('📧 Resend Email (simulated):', {
+      const result = await resend.emails.send({
+        from: options.from,
+        to: Array.isArray(options.to) ? options.to : [options.to],
+        subject: options.subject,
+        html: options.html,
+        text: options.text,
+        attachments: options.attachments
+      })
+
+      console.log('✅ Resend Email sent successfully:', {
+        id: result.data?.id,
         from: options.from,
         to: options.to,
         subject: options.subject,

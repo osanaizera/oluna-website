@@ -136,16 +136,36 @@ export default function LeadForm() {
     setIsSubmitting(true)
     announcePolite('Enviando formulário...')
 
-    // Simular envio (aqui você integraria com sua API)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      setIsSuccess(true)
-      announceSuccess(
-        'Formulário enviado com sucesso! Nossa equipe entrará em contato em até 24 horas.'
-      )
+      // Enviar para a API de contato
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          position: formData.position,
+          service: formData.service,
+          urgency: formData.urgency,
+          message: formData.description,
+          city: 'Não informado', // Campo não presente neste form
+          preferredContact: formData.preferredContact,
+          budget: formData.budget,
+        })
+      })
 
-      // Aqui você enviaria os dados para sua API
-      console.log('Form Data:', formData)
+      if (response.ok) {
+        setIsSuccess(true)
+        announceSuccess(
+          'Formulário enviado com sucesso! Nossa equipe entrará em contato em até 24 horas.'
+        )
+      } else {
+        throw new Error('Erro na resposta da API')
+      }
     } catch (error) {
       console.error('Erro ao enviar formulário:', error)
       announceError('Erro ao enviar formulário. Tente novamente ou entre em contato por telefone.')
