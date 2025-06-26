@@ -486,7 +486,7 @@ export default function HomePage() {
             {/* Missão */}
             <div className="mt-20 text-center">
               <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 max-w-4xl mx-auto border border-white/10">
-                <div className="text-6xl text-white/80 mb-6">"</div>
+                <div className="text-6xl text-white/80 mb-6">&ldquo;</div>
                 <p className="text-2xl text-white leading-relaxed italic mb-6">
                   Nossa missão é ser o parceiro de confiança na transição energética, transformando
                   o invisível em visível e protegendo suas operações com qualidade e informação de

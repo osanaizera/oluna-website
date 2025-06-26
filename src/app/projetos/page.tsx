@@ -407,7 +407,7 @@ export default function ProjetosPage() {
                   },
                 ].map((testimonial, index) => (
                   <div key={index} className="bg-white rounded-2xl p-6 shadow-lg">
-                    <div className="text-4xl text-gray-300 mb-4">"</div>
+                    <div className="text-4xl text-gray-300 mb-4">&ldquo;</div>
                     <p className="text-gray-600 italic mb-6 leading-relaxed">{testimonial.quote}</p>
                     <div className="border-t pt-4">
                       <div className="font-semibold text-gray-900">{testimonial.author}</div>
