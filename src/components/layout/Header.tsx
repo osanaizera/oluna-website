@@ -160,7 +160,7 @@ export default function Header() {
                     isScrolled ? 'text-gray-500' : 'text-white/90 drop-shadow-sm'
                   }`}
                 >
-                  Termografia & Diagnósticos
+                  Especialistas em Energia
                 </span>
               </div>
             </motion.button>
