@@ -149,7 +149,6 @@ export default function EnhancedContactForm() {
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const cityInputRef = useRef<HTMLInputElement>(null)
-  const messageRef = useRef<HTMLTextAreaElement>(null)
 
   // Analytics tracking hooks
   const formTracking = useFormTracking('contact_form', 'contact')
@@ -161,7 +160,10 @@ export default function EnhancedContactForm() {
   }, [formTracking])
 
   // Character counter for message
-  const messageCounter = limitTextWithCounter(formData.message, 1000)
+  const messageLength = formData.message.length
+  const messageMaxLength = 1000
+  const messagePercentage = (messageLength / messageMaxLength) * 100
+  const messageIsOverLimit = messageLength > messageMaxLength
 
   // Filter cities based on search term
   useEffect(() => {
@@ -218,7 +220,7 @@ export default function EnhancedContactForm() {
           setShowCityDropdown(true)
           break
         case 'message':
-          formattedValue = messageCounter.text
+          formattedValue = value.length > 1000 ? value.slice(0, 1000) : value
           break
       }
 
@@ -234,7 +236,7 @@ export default function EnhancedContactForm() {
         setTimeout(() => validateField(field, formattedValue), 300)
       }
     },
-    [previousPhone, messageCounter.text, submitAttempts, validateField]
+    [previousPhone, submitAttempts, validateField, formTracking]
   )
 
   // Handle city selection
@@ -905,7 +907,6 @@ export default function EnhancedContactForm() {
                 Descreva sua necessidade
               </label>
               <textarea
-                ref={messageRef}
                 id="message"
                 name="message"
                 required
@@ -927,10 +928,10 @@ export default function EnhancedContactForm() {
                 <div
                   className={cn(
                     'text-xs font-medium',
-                    messageCounter.isOverLimit ? 'text-red-600' : 'text-gray-500'
+                    messageIsOverLimit ? 'text-red-600' : 'text-gray-500'
                   )}
                 >
-                  {formData.message.length}/1000
+                  {messageLength}/{messageMaxLength}
                 </div>
               </div>
 
@@ -939,13 +940,13 @@ export default function EnhancedContactForm() {
                 <div
                   className={cn(
                     'h-1 rounded-full transition-all duration-300',
-                    messageCounter.isOverLimit
+                    messageIsOverLimit
                       ? 'bg-red-500'
-                      : messageCounter.percentage > 80
+                      : messagePercentage > 80
                         ? 'bg-yellow-500'
                         : 'bg-green-500'
                   )}
-                  style={{ width: `${Math.min(messageCounter.percentage, 100)}%` }}
+                  style={{ width: `${Math.min(messagePercentage, 100)}%` }}
                 />
               </div>
 
@@ -1061,7 +1062,7 @@ export default function EnhancedContactForm() {
         <div className="text-center">
           <button
             type="submit"
-            disabled={isSubmitting || messageCounter.isOverLimit}
+            disabled={isSubmitting || messageIsOverLimit}
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-400 to-accent-500 text-white rounded-xl font-semibold hover:shadow-thermal transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-lg relative overflow-hidden group"
           >
             {/* Thermal effect */}
