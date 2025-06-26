@@ -6,6 +6,8 @@ import WhatsAppButton from '@/components/layout/WhatsAppButton'
 import { GlobalLiveRegion } from '@/components/common/LiveRegion'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import CookieConsent from '@/components/analytics/CookieConsent'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 // import AnalyticsInit from '@/components/analytics/AnalyticsInit' // Disabled temporarily
 import {
   inter,
@@ -155,6 +157,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* LGPD Cookie Consent Manager */}
         <CookieConsent position="bottom" />
+
+        {/* Vercel Analytics & Speed Insights */}
+        <Analytics />
+        <SpeedInsights />
 
         {/* Analytics Initialization - Disabled temporarily */}
         {/* <AnalyticsInit /> */}
