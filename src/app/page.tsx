@@ -164,7 +164,7 @@ export default function HomePage() {
         {/* Seção Sobre */}
         <section
           id="sobre"
-          className="py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900"
+          className="py-16 relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900"
           aria-label="Sobre a Ôluna Engenharia"
         >
           {/* Simplified Thermal Background */}
@@ -182,13 +182,13 @@ export default function HomePage() {
 
           <div className="container mx-auto px-6 relative z-10">
             {/* Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-6 border border-white/20">
                 <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
                 <span className="text-white font-medium">Engenharia Carioca</span>
               </div>
 
-              <h2 className="text-responsive-5xl font-display font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
                 Sobre a{' '}
                 <span
                   className="transition-all duration-1000"
@@ -201,71 +201,40 @@ export default function HomePage() {
                 </span>
               </h2>
 
-              <p className="text-responsive-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Engenharia especializada com mais de 25 anos de experiência na indústria, atuando no
-                Rio de Janeiro, Região dos Lagos e Serra Carioca.
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Contamos com corpo técnico de engenheiros e técnicos especializados, com experiência em grandes indústrias do Brasil.
               </p>
             </div>
 
             {/* Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
               {/* Texto principal */}
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-2xl font-display font-semibold text-white mb-4">
-                    Expertise e Experiência
-                  </h3>
-                  <p className="text-lg text-gray-300 leading-relaxed">
-                    Somos uma empresa carioca com mais de{' '}
-                    <strong className="text-white">25 anos de experiência</strong> na indústria.
-                    Nossa expertise técnica consolidada permite entregar soluções de engenharia de
-                    precisão com qualidade e confiabilidade.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-display font-semibold text-white mb-4">
-                    Entendemos os Desafios do Seu Negócio
-                  </h3>
-                  <p className="text-lg text-gray-300 leading-relaxed">
-                    Conhecemos os desafios dos negócios em manter sistemas confiáveis e eficientes.
-                    Vivemos o momento de modernização da sociedade durante a{' '}
-                    <strong className="text-white">transição energética</strong>, e sabemos da
-                    importância de ter parceiros que forneçam serviços e informações de qualidade.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-display font-semibold text-white mb-4">
-                    Compromisso com a Qualidade
-                  </h3>
-                  <p className="text-lg text-gray-300 leading-relaxed">
-                    Combinamos experiência técnica com proximidade humana para entregar soluções que
-                    realmente funcionam. Nosso compromisso é ser um{' '}
-                    <strong className="text-white">parceiro de confiança</strong> na sua jornada de
-                    eficiência e modernização energética.
-                  </p>
-                </div>
+              <div className="space-y-6">
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Somos uma empresa carioca especializada em soluções energéticas inovadoras. 
+                  Nossa expertise técnica consolidada permite entregar soluções de engenharia de 
+                  precisão com qualidade e confiabilidade.
+                </p>
+                
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Vivemos o momento de modernização da sociedade durante a{' '}
+                  <strong className="text-white">transição energética</strong>, e sabemos da
+                  importância de ter parceiros que forneçam serviços e informações de qualidade.
+                </p>
               </div>
 
               {/* Estatísticas e credenciais */}
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {/* Stats Cards */}
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
-                    <div className="text-4xl font-bold text-white mb-2">25+</div>
-                    <div className="text-white font-medium mb-1">Anos de</div>
-                    <div className="text-gray-300 text-sm">Experiência</div>
+                    <div className="text-3xl font-bold text-white mb-2">ART</div>
+                    <div className="text-white font-medium mb-1">CREA RJ</div>
+                    <div className="text-gray-300 text-sm">Emitimos</div>
                   </div>
 
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
-                    <div className="text-4xl font-bold text-white mb-2">100%</div>
-                    <div className="text-white font-medium mb-1">Engenheiros</div>
-                    <div className="text-gray-300 text-sm">CREA</div>
-                  </div>
-
-                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
-                    <div className="text-4xl font-bold text-white mb-2">RJ</div>
+                    <div className="text-3xl font-bold text-white mb-2">RJ</div>
                     <div className="text-white font-medium mb-1">Empresa</div>
                     <div className="text-gray-300 text-sm">Carioca</div>
                   </div>
@@ -273,13 +242,13 @@ export default function HomePage() {
 
                 {/* Áreas de atuação */}
                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                  <h4 className="text-xl font-semibold text-white mb-4 text-center">
+                  <h4 className="text-lg font-semibold text-white mb-4 text-center">
                     Áreas de Atuação
                   </h4>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-white/60 rounded-full"></div>
-                      <span className="text-gray-300">Rio de Janeiro (Capital e Grande Rio)</span>
+                      <span className="text-gray-300">Rio de Janeiro e Grande Rio</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-white/60 rounded-full"></div>
@@ -295,19 +264,6 @@ export default function HomePage() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Missão */}
-            <div className="mt-20 text-center">
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 max-w-4xl mx-auto border border-white/10">
-                <div className="text-6xl text-white/80 mb-6">&ldquo;</div>
-                <p className="text-2xl text-white leading-relaxed italic mb-6">
-                  Nossa missão é ser o parceiro de confiança na transição energética, transformando
-                  o invisível em visível e protegendo suas operações com qualidade e informação de
-                  excelência.
-                </p>
-                <div className="w-24 h-1 bg-gradient-to-r from-white/60 to-white/40 mx-auto"></div>
               </div>
             </div>
           </div>

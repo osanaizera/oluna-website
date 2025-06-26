@@ -95,34 +95,9 @@ export default function Footer() {
               <span className="text-xl font-display font-semibold">Ôluna Engenharia</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
-              Engenheiros apaixonados por descobrir o invisível e transformar dados em ações.
-              Especialistas em termografia e diagnósticos elétricos.
+              Especialistas em energia com corpo técnico de engenheiros e técnicos especializados, 
+              com experiência em grandes indústrias do Brasil.
             </p>
-
-            {/* Estatísticas */}
-            <div className="grid grid-cols-3 gap-4 max-w-sm">
-              <div className="text-center group">
-                <div className="text-2xl font-bold text-primary-400 transition-all duration-300 group-hover:scale-110 relative">
-                  30%
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r from-primary-400/30 to-accent-500/30 rounded-md transition-opacity duration-300 -m-1"></div>
-                </div>
-                <div className="text-xs text-gray-400">↓ Downtime</div>
-              </div>
-              <div className="text-center group">
-                <div className="text-2xl font-bold text-accent-500 transition-all duration-300 group-hover:scale-110 relative">
-                  12%
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r from-accent-500/30 to-secondary-500/30 rounded-md transition-opacity duration-300 -m-1"></div>
-                </div>
-                <div className="text-xs text-gray-400">Economia</div>
-              </div>
-              <div className="text-center group">
-                <div className="text-2xl font-bold text-secondary-500 transition-all duration-300 group-hover:scale-110 relative">
-                  4-6
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r from-secondary-500/30 to-primary-400/30 rounded-md transition-opacity duration-300 -m-1"></div>
-                </div>
-                <div className="text-xs text-gray-400">Meses ROI</div>
-              </div>
-            </div>
           </div>
 
           {/* Serviços */}
@@ -134,7 +109,7 @@ export default function Footer() {
                   href="#servicos"
                   className="hover:text-primary-400 transition-all duration-300 relative group block py-1"
                 >
-                  Termografia Industrial
+                  Termografia
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500 group-hover:w-full transition-all duration-300"></div>
                 </a>
               </li>
@@ -143,7 +118,7 @@ export default function Footer() {
                   href="#servicos"
                   className="hover:text-primary-400 transition-all duration-300 relative group block py-1"
                 >
-                  Diagnóstico Energético
+                  Análise de Qualidade de Energia
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500 group-hover:w-full transition-all duration-300"></div>
                 </a>
               </li>
@@ -152,7 +127,7 @@ export default function Footer() {
                   href="#servicos"
                   className="hover:text-primary-400 transition-all duration-300 relative group block py-1"
                 >
-                  Laudos NR-10/12
+                  Consultoria para Projeto de BESS
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500 group-hover:w-full transition-all duration-300"></div>
                 </a>
               </li>
@@ -161,7 +136,7 @@ export default function Footer() {
                   href="#servicos"
                   className="hover:text-primary-400 transition-all duration-300 relative group block py-1"
                 >
-                  Monitoramento Contínuo
+                  Análise para Carregadores Elétricos
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500 group-hover:w-full transition-all duration-300"></div>
                 </a>
               </li>
@@ -170,7 +145,16 @@ export default function Footer() {
                   href="#servicos"
                   className="hover:text-primary-400 transition-all duration-300 relative group block py-1"
                 >
-                  Consultoria Energética
+                  Projeto de Energia Solar Local
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500 group-hover:w-full transition-all duration-300"></div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#servicos"
+                  className="hover:text-primary-400 transition-all duration-300 relative group block py-1"
+                >
+                  Laudos NR-10
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500 group-hover:w-full transition-all duration-300"></div>
                 </a>
               </li>
@@ -242,9 +226,16 @@ export default function Footer() {
       <div className="border-t border-gray-800">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
-            <p>© {currentYear} Ôluna Engenharia. Todos os direitos reservados.</p>
+            <div className="text-center md:text-left">
+              <p>© {currentYear} Ôluna Engenharia. Todos os direitos reservados.</p>
+              <p className="mt-1">
+                Desenvolvido pela{' '}
+                <span className="text-white font-medium hover:text-primary-400 transition-colors">
+                  ÔZA Creative
+                </span>
+              </p>
+            </div>
             <div className="flex items-center gap-6 mt-4 md:mt-0">
-              <span>Engenheiros CRE A Certificados</span>
               <div className="flex items-center gap-2 group">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse relative">
                   {/* Thermal ping effect for online status */}
