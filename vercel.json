@@ -1,12 +1,9 @@
 {
   "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
+  "devCommand": "npm run dev", 
   "installCommand": "npm install",
   "framework": "nextjs",
   "regions": ["gru1"],
-  "env": {
-    "NEXT_PUBLIC_GA_ID": "@ga_id"
-  },
   "headers": [
     {
       "source": "/(.*)",
