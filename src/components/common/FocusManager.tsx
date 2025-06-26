@@ -17,7 +17,7 @@ export const FocusManager: React.FC<FocusManagerProps> = ({
   children,
   trapFocus = false,
   restoreFocus = true,
-  initialFocus
+  initialFocus,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const previousActiveElementRef = useRef<Element | null>(null)
@@ -36,7 +36,7 @@ export const FocusManager: React.FC<FocusManagerProps> = ({
 
     return () => {
       if (restoreFocus && previousActiveElementRef.current) {
-        (previousActiveElementRef.current as HTMLElement).focus()
+        ;(previousActiveElementRef.current as HTMLElement).focus()
       }
     }
   }, [restoreFocus, initialFocus])
@@ -53,7 +53,7 @@ export const FocusManager: React.FC<FocusManagerProps> = ({
       const focusableElements = container.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       )
-      
+
       const firstFocusable = focusableElements[0] as HTMLElement
       const lastFocusable = focusableElements[focusableElements.length - 1] as HTMLElement
 
@@ -74,11 +74,7 @@ export const FocusManager: React.FC<FocusManagerProps> = ({
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [trapFocus, isInitialized])
 
-  return (
-    <div ref={containerRef}>
-      {children}
-    </div>
-  )
+  return <div ref={containerRef}>{children}</div>
 }
 
 export default FocusManager

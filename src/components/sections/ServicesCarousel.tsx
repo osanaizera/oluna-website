@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { 
-  ThermographyIcon, 
-  EnergyDiagnosticIcon, 
-  CertificationIcon, 
-  MonitoringIcon 
+import {
+  ThermographyIcon,
+  EnergyDiagnosticIcon,
+  CertificationIcon,
+  MonitoringIcon,
 } from '@/components/icons/ServiceIcons'
 
 const services = [
@@ -13,7 +13,8 @@ const services = [
     id: 'termografia-paineis',
     title: 'Termografia de Painéis Elétricos',
     subtitle: 'Detecte problemas antes que aconteçam',
-    description: 'Inspeção termográfica especializada em painéis elétricos para identificar pontos quentes, conexões soltas e sobrecargas em tempo real.',
+    description:
+      'Inspeção termográfica especializada em painéis elétricos para identificar pontos quentes, conexões soltas e sobrecargas em tempo real.',
     icon: ThermographyIcon,
     gradient: 'from-orange-500 via-red-500 to-pink-500',
     color: 'var(--heat-orange)',
@@ -21,15 +22,16 @@ const services = [
       'Inspeção sem parada de produção',
       'Relatórios com imagens termográficas HD',
       'Identificação de conexões críticas',
-      'Priorização de manutenções'
+      'Priorização de manutenções',
     ],
-    thermalPattern: 'hot'
+    thermalPattern: 'hot',
   },
   {
     id: 'qualidade-energia',
     title: 'Análises de Qualidade de Energia',
     subtitle: 'Otimize sua eficiência energética',
-    description: 'Medições especializadas de qualidade energética com análise de harmônicas, fator de potência e distorções.',
+    description:
+      'Medições especializadas de qualidade energética com análise de harmônicas, fator de potência e distorções.',
     icon: EnergyDiagnosticIcon,
     gradient: 'from-blue-500 via-cyan-500 to-teal-500',
     color: 'var(--cool-teal)',
@@ -37,15 +39,16 @@ const services = [
       'Análise de harmônicas e THD',
       'Medição de fator de potência',
       'Identificação de perdas energéticas',
-      'Relatórios de conformidade'
+      'Relatórios de conformidade',
     ],
-    thermalPattern: 'cool'
+    thermalPattern: 'cool',
   },
   {
     id: 'relatorio-nr10',
     title: 'Relatório de Adequação NR-10',
     subtitle: 'Conformidade regulatória garantida',
-    description: 'Relatórios técnicos especializados para adequação às normas NR-10, com análise completa de instalações elétricas.',
+    description:
+      'Relatórios técnicos especializados para adequação às normas NR-10, com análise completa de instalações elétricas.',
     icon: CertificationIcon,
     gradient: 'from-purple-500 via-violet-500 to-pink-500',
     color: 'var(--heat-red)',
@@ -53,15 +56,16 @@ const services = [
       'Conformidade total NR-10',
       'Documentação técnica ART',
       'Planos de adequação detalhados',
-      'Acompanhamento das melhorias'
+      'Acompanhamento das melhorias',
     ],
-    thermalPattern: 'warm'
+    thermalPattern: 'warm',
   },
   {
     id: 'laudo-spda',
     title: 'Laudo SPDA',
     subtitle: 'Proteção contra descargas atmosféricas',
-    description: 'Laudos técnicos especializados em Sistemas de Proteção contra Descargas Atmosféricas (SPDA) conforme NBR 5419.',
+    description:
+      'Laudos técnicos especializados em Sistemas de Proteção contra Descargas Atmosféricas (SPDA) conforme NBR 5419.',
     icon: CertificationIcon,
     gradient: 'from-yellow-500 via-amber-500 to-orange-500',
     color: 'var(--heat-orange)',
@@ -69,15 +73,16 @@ const services = [
       'Conformidade NBR 5419',
       'Medições de resistência',
       'Análise de eficiência do sistema',
-      'Relatórios com ART'
+      'Relatórios com ART',
     ],
-    thermalPattern: 'hot'
+    thermalPattern: 'hot',
   },
   {
     id: 'suporte-tecnologias',
     title: 'Suporte de Engenharia para Novas Tecnologias',
     subtitle: 'BESS, Carregadores Elétricos e mais',
-    description: 'Consultoria especializada para implementação de tecnologias emergentes como sistemas de armazenamento de energia e infraestrutura de recarga.',
+    description:
+      'Consultoria especializada para implementação de tecnologias emergentes como sistemas de armazenamento de energia e infraestrutura de recarga.',
     icon: MonitoringIcon,
     gradient: 'from-green-500 via-emerald-500 to-teal-500',
     color: 'var(--forest-green)',
@@ -85,15 +90,16 @@ const services = [
       'Projetos de BESS (Battery Energy Storage)',
       'Infraestrutura para carregadores elétricos',
       'Integração com fontes renováveis',
-      'Consultoria em eficiência energética'
+      'Consultoria em eficiência energética',
     ],
-    thermalPattern: 'medium'
+    thermalPattern: 'medium',
   },
   {
     id: 'monitoramento-gestao',
     title: 'Monitoramento e Gestão de Energia',
     subtitle: 'Visibilidade 24/7 do seu consumo',
-    description: 'Sistema integrado de monitoramento energético com dashboards em tempo real, alertas inteligentes e relatórios automatizados.',
+    description:
+      'Sistema integrado de monitoramento energético com dashboards em tempo real, alertas inteligentes e relatórios automatizados.',
     icon: MonitoringIcon,
     gradient: 'from-indigo-500 via-purple-500 to-pink-500',
     color: 'var(--cool-teal)',
@@ -101,10 +107,10 @@ const services = [
       'Dashboard web em tempo real',
       'Alertas via WhatsApp e email',
       'Relatórios automatizados',
-      'Análise de tendências de consumo'
+      'Análise de tendências de consumo',
     ],
-    thermalPattern: 'cool'
-  }
+    thermalPattern: 'cool',
+  },
 ]
 
 export default function ServicesCarousel() {
@@ -183,7 +189,10 @@ export default function ServicesCarousel() {
   const activeService = services[activeIndex]
 
   return (
-    <section id="servicos" className="py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
+    <section
+      id="servicos"
+      className="py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900"
+    >
       {/* Animated Background Layers */}
       <div className="absolute inset-0">
         {/* Thermal Wave Pattern */}
@@ -196,14 +205,14 @@ export default function ServicesCarousel() {
                 <stop offset="100%" stopColor={activeService.color} stopOpacity="0.1" />
               </linearGradient>
               <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge> 
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/> 
+                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
             </defs>
-            
+
             {/* Animated Thermal Waves */}
             {[...Array(6)].map((_, i) => (
               <path
@@ -214,13 +223,17 @@ export default function ServicesCarousel() {
                 fill="none"
                 filter="url(#glow)"
                 className={`transition-all duration-1000 ${
-                  activeService.thermalPattern === 'hot' ? 'animate-pulse' :
-                  activeService.thermalPattern === 'warm' ? 'animate-bounce' :
-                  activeService.thermalPattern === 'medium' ? 'animate-pulse' : 'animate-ping'
+                  activeService.thermalPattern === 'hot'
+                    ? 'animate-pulse'
+                    : activeService.thermalPattern === 'warm'
+                      ? 'animate-bounce'
+                      : activeService.thermalPattern === 'medium'
+                        ? 'animate-pulse'
+                        : 'animate-ping'
                 }`}
                 style={{
                   animationDelay: `${i * 0.2}s`,
-                  animationDuration: `${3 + i * 0.5}s`
+                  animationDuration: `${3 + i * 0.5}s`,
                 }}
               />
             ))}
@@ -238,17 +251,17 @@ export default function ServicesCarousel() {
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`
+                animationDelay: `${Math.random() * 5}s`,
               }}
             />
           ))}
         </div>
 
         {/* Gradient Overlay */}
-        <div 
+        <div
           className="absolute inset-0 transition-all duration-1000"
           style={{
-            background: `radial-gradient(circle at 50% 50%, ${activeService.color}15 0%, transparent 70%)`
+            background: `radial-gradient(circle at 50% 50%, ${activeService.color}15 0%, transparent 70%)`,
           }}
         />
       </div>
@@ -257,31 +270,34 @@ export default function ServicesCarousel() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20">
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: activeService.color }}></div>
+            <div
+              className="w-2 h-2 rounded-full animate-pulse"
+              style={{ backgroundColor: activeService.color }}
+            ></div>
             <span className="text-white font-medium">Tecnologia Avançada</span>
           </div>
-          
+
           <h2 className="text-5xl md:text-6xl font-display font-bold text-white mb-6">
             Nossos{' '}
-            <span 
+            <span
               className="transition-all duration-1000"
-              style={{ 
+              style={{
                 color: activeService.color,
-                textShadow: `0 0 30px ${activeService.color}40`
+                textShadow: `0 0 30px ${activeService.color}40`,
               }}
             >
               Serviços
             </span>
           </h2>
-          
+
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Soluções de engenharia com tecnologia de ponta para detectar o invisível 
-            e transformar dados em ações preventivas.
+            Soluções de engenharia com tecnologia de ponta para detectar o invisível e transformar
+            dados em ações preventivas.
           </p>
         </div>
 
         {/* Carousel Container */}
-        <div 
+        <div
           ref={containerRef}
           className="relative max-w-6xl mx-auto"
           onTouchStart={handleTouchStart}
@@ -292,18 +308,18 @@ export default function ServicesCarousel() {
         >
           {/* Main Service Card */}
           <div className="relative h-96 md:h-80 mb-8">
-            <div 
+            <div
               className="absolute inset-0 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 transition-all duration-700 overflow-hidden"
               style={{
-                boxShadow: `0 25px 50px -12px ${activeService.color}40`
+                boxShadow: `0 25px 50px -12px ${activeService.color}40`,
               }}
             >
               {/* Card Background Pattern */}
               <div className="absolute inset-0 opacity-10">
-                <div 
+                <div
                   className="w-full h-full"
                   style={{
-                    background: `radial-gradient(circle at 20% 20%, ${activeService.color} 0%, transparent 50%), radial-gradient(circle at 80% 80%, ${activeService.color} 0%, transparent 50%)`
+                    background: `radial-gradient(circle at 20% 20%, ${activeService.color} 0%, transparent 50%), radial-gradient(circle at 80% 80%, ${activeService.color} 0%, transparent 50%)`,
                   }}
                 />
               </div>
@@ -312,10 +328,10 @@ export default function ServicesCarousel() {
                 {/* Service Icon & Info */}
                 <div className="flex-1 text-center md:text-left">
                   <div className="flex items-center justify-center md:justify-start gap-6 mb-6">
-                    <div 
+                    <div
                       className="w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-700 bg-gradient-to-br"
-                      style={{ 
-                        background: `linear-gradient(135deg, ${activeService.color}, ${activeService.color}80)`
+                      style={{
+                        background: `linear-gradient(135deg, ${activeService.color}, ${activeService.color}80)`,
                       }}
                     >
                       <activeService.icon className="w-10 h-10 text-white" />
@@ -324,10 +340,7 @@ export default function ServicesCarousel() {
                       <h3 className="text-3xl font-display font-bold text-white mb-2">
                         {activeService.title}
                       </h3>
-                      <p 
-                        className="text-lg font-medium"
-                        style={{ color: activeService.color }}
-                      >
+                      <p className="text-lg font-medium" style={{ color: activeService.color }}>
                         {activeService.subtitle}
                       </p>
                     </div>
@@ -337,10 +350,10 @@ export default function ServicesCarousel() {
                     {activeService.description}
                   </p>
 
-                  <button 
+                  <button
                     className="px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg bg-gradient-to-r"
                     style={{
-                      background: `linear-gradient(45deg, ${activeService.color}, ${activeService.color}80)`
+                      background: `linear-gradient(45deg, ${activeService.color}, ${activeService.color}80)`,
                     }}
                   >
                     Solicitar {activeService.title}
@@ -352,16 +365,16 @@ export default function ServicesCarousel() {
                   <h4 className="text-white font-semibold mb-4 text-lg">Principais Benefícios:</h4>
                   <div className="space-y-4">
                     {activeService.benefits.map((benefit, index) => (
-                      <div 
+                      <div
                         key={index}
                         className="flex items-center gap-3 text-gray-300 transition-all duration-500"
-                        style={{ 
+                        style={{
                           animationDelay: `${index * 0.1}s`,
                           opacity: 1,
-                          transform: 'translateX(0)'
+                          transform: 'translateX(0)',
                         }}
                       >
-                        <div 
+                        <div
                           className="w-2 h-2 rounded-full flex-shrink-0"
                           style={{ backgroundColor: activeService.color }}
                         />
@@ -383,12 +396,10 @@ export default function ServicesCarousel() {
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === activeIndex 
-                      ? 'w-8 opacity-100' 
-                      : 'opacity-50 hover:opacity-75'
+                    index === activeIndex ? 'w-8 opacity-100' : 'opacity-50 hover:opacity-75'
                   }`}
                   style={{
-                    backgroundColor: index === activeIndex ? activeService.color : '#ffffff60'
+                    backgroundColor: index === activeIndex ? activeService.color : '#ffffff60',
                   }}
                 />
               ))}
@@ -399,7 +410,7 @@ export default function ServicesCarousel() {
               <div className="text-xs text-gray-400 hidden md:block">
                 {isAutoPlaying ? 'Auto-play ativo' : 'Auto-play pausado'}
               </div>
-              
+
               {/* Arrow Controls */}
               <div className="flex items-center gap-2">
                 <button
@@ -407,7 +418,12 @@ export default function ServicesCarousel() {
                   className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
                   </svg>
                 </button>
                 <button
@@ -415,7 +431,12 @@ export default function ServicesCarousel() {
                   className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </button>
               </div>
@@ -442,13 +463,23 @@ export default function ServicesCarousel() {
       {/* CSS Animations */}
       <style jsx>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(5deg); }
+          0%,
+          100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-10px) rotate(5deg);
+          }
         }
-        
+
         @keyframes thermalWave {
-          0%, 100% { d: path("M0,200 Q300,150 600,200 T1200,200"); }
-          50% { d: path("M0,200 Q300,180 600,200 T1200,200"); }
+          0%,
+          100% {
+            d: path('M0,200 Q300,150 600,200 T1200,200');
+          }
+          50% {
+            d: path('M0,200 Q300,180 600,200 T1200,200');
+          }
         }
       `}</style>
     </section>

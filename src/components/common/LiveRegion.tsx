@@ -6,7 +6,17 @@ interface LiveRegionProps {
   message: string
   politeness?: 'polite' | 'assertive' | 'off'
   atomic?: boolean
-  relevant?: 'additions' | 'removals' | 'text' | 'all'
+  relevant?:
+    | 'additions'
+    | 'removals'
+    | 'text'
+    | 'all'
+    | 'additions text'
+    | 'additions removals'
+    | 'removals text'
+    | 'text additions'
+    | 'text removals'
+    | 'removals additions'
   className?: string
 }
 
@@ -19,7 +29,7 @@ export const LiveRegion: React.FC<LiveRegionProps> = ({
   politeness = 'polite',
   atomic = true,
   relevant = 'additions text',
-  className = ''
+  className = '',
 }) => {
   const liveRegionRef = useRef<HTMLDivElement>(null)
 
@@ -61,7 +71,7 @@ export const GlobalLiveRegion: React.FC = () => {
         className="sr-only"
         role="status"
       />
-      
+
       {/* Assertive announcements */}
       <div
         id="live-region-assertive"
@@ -78,12 +88,12 @@ export const GlobalLiveRegion: React.FC = () => {
  * Utility function to announce messages to screen readers
  */
 export const announceToScreenReader = (
-  message: string, 
+  message: string,
   politeness: 'polite' | 'assertive' = 'polite'
 ) => {
   const regionId = politeness === 'assertive' ? 'live-region-assertive' : 'live-region-polite'
   const region = document.getElementById(regionId)
-  
+
   if (region) {
     region.textContent = ''
     setTimeout(() => {

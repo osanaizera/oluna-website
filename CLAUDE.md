@@ -1,9 +1,11 @@
 # Projeto Website Ôluna Engenharia - Guia para Claude Code
 
 ## Visão Geral
+
 Site institucional da Ôluna Engenharia, empresa especializada em soluções de engenharia. Este projeto utiliza as tecnologias mais modernas para criar uma experiência web rápida, acessível e otimizada para SEO.
 
 ## Stack Tecnológica Detalhada
+
 - **Framework**: Next.js 14.2.22 (App Router)
 - **Linguagem**: TypeScript 5.x
 - **Estilização**: Tailwind v4
@@ -13,6 +15,7 @@ Site institucional da Ôluna Engenharia, empresa especializada em soluções de 
 - **Node**: 18.x ou superior
 
 ## Estrutura do Projeto Detalhada
+
 ```
 oluna-website/
 ├── src/
@@ -62,6 +65,7 @@ oluna-website/
 ## Comandos de Desenvolvimento
 
 ### Comandos Principais
+
 ```bash
 npm run dev                 # Inicia servidor de desenvolvimento (localhost:3000)
 npm run build              # Build de produção
@@ -77,6 +81,7 @@ npm run format:check       # Verifica formatação
 ```
 
 ### Comandos de Desenvolvimento Úteis
+
 ```bash
 npm run analyze            # Analisa bundle size
 npm run clean              # Limpa cache e builds
@@ -89,6 +94,7 @@ npm run lighthouse         # Executa auditoria Lighthouse
 ## Padrões de Código e Convenções
 
 ### Estrutura de Componentes
+
 ```typescript
 // components/common/Button.tsx
 import { ButtonHTMLAttributes, FC } from 'react'
@@ -128,6 +134,7 @@ export const Button: FC<ButtonProps> = ({
 ```
 
 ### Estrutura de Páginas (App Router)
+
 ```typescript
 // app/servicos/page.tsx
 import { Metadata } from 'next'
@@ -150,6 +157,7 @@ export default function ServicosPage() {
 ```
 
 ### Padrões de Hooks Customizados
+
 ```typescript
 // hooks/useIntersectionObserver.ts
 import { useEffect, useRef, useState } from 'react'
@@ -161,7 +169,7 @@ interface UseIntersectionObserverProps {
 
 export function useIntersectionObserver({
   threshold = 0.1,
-  rootMargin = '0px'
+  rootMargin = '0px',
 }: UseIntersectionObserverProps = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false)
   const ref = useRef<HTMLElement>(null)
@@ -184,13 +192,14 @@ export function useIntersectionObserver({
 ## Configurações de SEO
 
 ### Meta Tags Padrão
+
 ```typescript
 // lib/seo.ts
 export const defaultMetadata: Metadata = {
   metadataBase: new URL('https://olunaengenharia.com.br'),
   title: {
     default: 'Ôluna Engenharia',
-    template: '%s | Ôluna Engenharia'
+    template: '%s | Ôluna Engenharia',
   },
   description: 'Soluções inovadoras em engenharia',
   keywords: ['engenharia', 'construção', 'projetos', 'consultoria'],
@@ -206,13 +215,13 @@ export const defaultMetadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Ôluna Engenharia'
-      }
-    ]
+        alt: 'Ôluna Engenharia',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@olunaengenharia'
+    creator: '@olunaengenharia',
   },
   robots: {
     index: true,
@@ -223,14 +232,15 @@ export const defaultMetadata: Metadata = {
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
-    }
-  }
+    },
+  },
 }
 ```
 
 ## Padrões de Performance
 
 ### Otimização de Imagens
+
 ```typescript
 // Sempre use next/image com configurações otimizadas
 import Image from 'next/image'
@@ -248,13 +258,14 @@ import Image from 'next/image'
 ```
 
 ### Lazy Loading de Componentes
+
 ```typescript
 // Use dynamic imports para componentes pesados
 import dynamic from 'next/dynamic'
 
 const MapComponent = dynamic(
   () => import('@/components/common/Map'),
-  { 
+  {
     loading: () => <MapSkeleton />,
     ssr: false // Para componentes client-only
   }
@@ -264,6 +275,7 @@ const MapComponent = dynamic(
 ## Acessibilidade (a11y)
 
 ### Checklist de Acessibilidade
+
 - [ ] Todos os botões e links têm labels descritivos
 - [ ] Imagens possuem alt text apropriado
 - [ ] Formulários têm labels associados
@@ -274,6 +286,7 @@ const MapComponent = dynamic(
 - [ ] Testes com screen readers
 
 ### Exemplo de Componente Acessível
+
 ```typescript
 // components/common/Card.tsx
 export const Card: FC<CardProps> = ({ title, description, link }) => {
@@ -293,14 +306,12 @@ export const Card: FC<CardProps> = ({ title, description, link }) => {
 ## Integração com APIs
 
 ### Cliente API Base
+
 ```typescript
 // services/api.ts
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.olunaengenharia.com.br'
 
-export async function apiClient<T>(
-  endpoint: string,
-  options: RequestInit = {}
-): Promise<T> {
+export async function apiClient<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     headers: {
       'Content-Type': 'application/json',
@@ -320,6 +331,7 @@ export async function apiClient<T>(
 ## Formulários e Validação
 
 ### Exemplo de Formulário de Contato
+
 ```typescript
 // components/forms/ContactForm.tsx
 import { useForm } from 'react-hook-form'
@@ -355,6 +367,7 @@ export function ContactForm() {
 ## Testes
 
 ### Estrutura de Testes
+
 ```typescript
 // tests/components/Button.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react'
@@ -369,7 +382,7 @@ describe('Button', () => {
   it('should handle click events', () => {
     const handleClick = jest.fn()
     render(<Button onClick={handleClick}>Click me</Button>)
-    
+
     fireEvent.click(screen.getByRole('button'))
     expect(handleClick).toHaveBeenCalledTimes(1)
   })
@@ -384,6 +397,7 @@ describe('Button', () => {
 ## Deploy e CI/CD
 
 ### Configuração Vercel
+
 ```json
 // vercel.json
 {
@@ -400,6 +414,7 @@ describe('Button', () => {
 ```
 
 ### GitHub Actions
+
 ```yaml
 # .github/workflows/ci.yml
 name: CI
@@ -428,11 +443,13 @@ jobs:
 ### Problemas Comuns
 
 1. **Erro de Hidratação**
+
    - Verifique se o conteúdo do servidor e cliente são idênticos
    - Use `suppressHydrationWarning` apenas como último recurso
    - Considere usar `dynamic` com `ssr: false` para componentes client-only
 
 2. **Performance Issues**
+
    - Use React DevTools Profiler
    - Verifique re-renders desnecessários
    - Implemente `memo`, `useMemo`, e `useCallback` quando apropriado
@@ -445,12 +462,14 @@ jobs:
 ## Recursos e Referências
 
 ### Documentação Essencial
+
 - [Next.js Docs](https://nextjs.org/docs)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ### Ferramentas de Desenvolvimento
+
 - [Next.js DevTools](https://nextjs.org/docs/advanced-features/debugging)
 - [React Developer Tools](https://react.dev/learn/react-developer-tools)
 - [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci)

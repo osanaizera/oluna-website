@@ -3,22 +3,28 @@
 ## O que mudou
 
 ### Removidos
+
 - `tailwind.config.ts` - Não é mais necessário
 - `postcss.config.js` - Tailwind v4 não depende mais do PostCSS
 
 ### Novo Sistema
+
 O Tailwind v4 usa CSS nativo com a diretiva `@import "tailwindcss"` e o bloco `@theme` para customizações.
 
 ## Estrutura de Arquivos CSS
 
 ### 1. `/src/app/globals.css`
+
 Arquivo principal com:
+
 - Import do Tailwind CSS v4
 - Variáveis de tema customizadas no bloco `@theme`
 - Estilos base, componentes e utilitários
 
 ### 2. `/src/styles/tailwind-theme.css`
+
 Arquivo adicional demonstrando:
+
 - Extensões avançadas do tema
 - Componentes complexos
 - Utilitários específicos do projeto
@@ -26,6 +32,7 @@ Arquivo adicional demonstrando:
 ## Como Usar
 
 ### Variáveis CSS Customizadas
+
 ```css
 /* Usar diretamente nas classes do Tailwind */
 <div className="bg-[var(--color-primary-500)]">
@@ -37,6 +44,7 @@ Arquivo adicional demonstrando:
 ```
 
 ### Classes de Componentes
+
 ```jsx
 // Botões
 <button className="btn btn-primary">Primário</button>
@@ -63,6 +71,7 @@ Arquivo adicional demonstrando:
 ```
 
 ### Utilitários Especiais
+
 ```jsx
 // Glassmorphism
 <div className="glass">
@@ -88,6 +97,7 @@ Arquivo adicional demonstrando:
 ## Variáveis de Tema Disponíveis
 
 ### Cores
+
 - **Primary**: `--color-primary-50` até `--color-primary-900`
 - **Gray**: `--color-gray-50` até `--color-gray-900`
 - **Success**: `--color-success`
@@ -96,31 +106,39 @@ Arquivo adicional demonstrando:
 - **Info**: `--color-info`
 
 ### Tipografia
+
 - **Sans**: `--font-sans`
 - **Mono**: `--font-mono`
 
 ### Espaçamentos
+
 - **Section**: `--spacing-section`
 - **Container**: `--spacing-container`
 
 ### Outros
+
 - **Raios**: `--radius-card`, `--radius-button`
 - **Sombras**: `--shadow-card`, `--shadow-card-hover`
 - **Z-index**: `--z-dropdown`, `--z-modal`, etc.
 - **Transições**: `--transition-fast`, `--transition-normal`, `--transition-slow`
 
 ## Modo Escuro
+
 O tema suporta modo escuro automaticamente usando `prefers-color-scheme`. As variáveis `--foreground` e `--background` se ajustam automaticamente.
 
 ## Performance
+
 O Tailwind v4 oferece melhor performance pois:
+
 - Não requer processamento PostCSS
 - Usa CSS nativo
 - Menor tempo de build
 - Melhor tree-shaking
 
 ## Comandos
+
 Não há mudanças nos comandos do projeto:
+
 ```bash
 npm run dev    # Desenvolvimento
 npm run build  # Build de produção

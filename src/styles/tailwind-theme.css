@@ -4,19 +4,19 @@
  * com variáveis CSS customizadas
  */
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Extensão do tema com variáveis específicas da Ôluna */
 @theme {
   /* Breakpoints customizados */
   --breakpoint-xs: 475px;
   --breakpoint-2xl: 1536px;
-  
+
   /* Transições customizadas */
   --transition-fast: 150ms;
   --transition-normal: 250ms;
   --transition-slow: 350ms;
-  
+
   /* Z-index customizados */
   --z-dropdown: 1000;
   --z-sticky: 1020;
@@ -25,11 +25,11 @@
   --z-modal: 1050;
   --z-popover: 1060;
   --z-tooltip: 1070;
-  
+
   /* Larguras máximas customizadas */
   --max-w-8xl: 88rem;
   --max-w-9xl: 96rem;
-  
+
   /* Aspect ratios customizados */
   --aspect-2/1: 2/1;
   --aspect-3/2: 3/2;
@@ -46,14 +46,14 @@
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
-  
+
   .glass-dark {
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
-  
+
   /* Gradient text */
   .gradient-text {
     background: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600));
@@ -61,40 +61,41 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   /* Neon glow effects */
   .glow-primary {
     box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
   }
-  
+
   .glow-primary-hover:hover {
     box-shadow: 0 0 30px rgba(14, 165, 233, 0.7);
   }
-  
+
   /* Custom animations */
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
-  
+
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
       transform: translateY(-10px);
     }
   }
-  
+
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-  
+
   /* Selection color */
   .selection-primary::selection {
     background-color: var(--color-primary-200);
     color: var(--color-primary-900);
   }
-  
+
   /* Custom focus styles */
   .focus-ring:focus {
     outline: none;
@@ -114,18 +115,14 @@
     z-index: var(--z-sticky);
     transition: all var(--transition-normal) ease;
   }
-  
+
   /* Hero gradient overlay */
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.6)
-    );
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
   }
-  
+
   /* Feature card with hover effect */
   .feature-card {
     @apply card;
@@ -133,7 +130,7 @@
     overflow: hidden;
     transition: all var(--transition-normal) ease;
   }
-  
+
   .feature-card::before {
     content: '';
     position: absolute;
@@ -147,16 +144,16 @@
     transition: opacity var(--transition-normal) ease;
     border-radius: inherit;
   }
-  
+
   .feature-card:hover::before {
     opacity: 1;
   }
-  
+
   .feature-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
-  
+
   /* Input field styles */
   .input-field {
     width: 100%;
@@ -168,17 +165,17 @@
     font-size: 1rem;
     transition: all var(--transition-fast) ease;
   }
-  
+
   .input-field:focus {
     outline: none;
     border-color: var(--color-primary-500);
     box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
   }
-  
+
   .input-field::placeholder {
     color: var(--color-gray-400);
   }
-  
+
   /* Badge component */
   .badge {
     display: inline-flex;
@@ -189,22 +186,22 @@
     border-radius: 9999px;
     transition: all var(--transition-fast) ease;
   }
-  
+
   .badge-primary {
     background-color: var(--color-primary-100);
     color: var(--color-primary-700);
   }
-  
+
   .badge-success {
     background-color: rgba(16, 185, 129, 0.1);
     color: var(--color-success);
   }
-  
+
   .badge-warning {
     background-color: rgba(245, 158, 11, 0.1);
     color: var(--color-warning);
   }
-  
+
   .badge-error {
     background-color: rgba(239, 68, 68, 0.1);
     color: var(--color-error);
@@ -216,17 +213,17 @@
   .navbar-glass {
     @apply glass-dark;
   }
-  
+
   .input-field {
     border-color: var(--color-gray-600);
     background-color: var(--color-gray-800);
   }
-  
+
   .input-field:focus {
     border-color: var(--color-primary-400);
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
   }
-  
+
   .badge-primary {
     background-color: rgba(14, 165, 233, 0.2);
     color: var(--color-primary-300);

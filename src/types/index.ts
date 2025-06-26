@@ -1,10 +1,10 @@
 /**
  * Type Definitions - Definições de tipos TypeScript para o projeto
- * 
+ *
  * Este arquivo centraliza todas as definições de tipos compartilhadas
  * entre diferentes partes da aplicação, garantindo consistência
  * e facilitando manutenção.
- * 
+ *
  * Organização:
  * - Interfaces de UI/Components
  * - Tipos de dados de negócio
@@ -186,7 +186,7 @@ export interface IBlogPost {
 // =============================================================================
 
 /**
- * Formulário de contato
+ * Formulário de contato básico (compatibilidade)
  */
 export interface IContactForm {
   name: string
@@ -199,6 +199,139 @@ export interface IContactForm {
   budget?: string
   timeline?: string
   consent: boolean // LGPD consent
+}
+
+/**
+ * Formulário de contato aprimorado com campos específicos para engenharia
+ */
+export interface IEnhancedContactForm {
+  // Dados pessoais
+  name: string
+  email: string
+  phone: string
+
+  // Dados da empresa
+  company: string
+  companyType: string
+  position: string
+  city: string
+
+  // Serviço solicitado
+  service: string
+  urgency: 'urgente' | 'alta' | 'media' | 'baixa'
+
+  // Detalhes
+  message: string
+  files?: File[]
+
+  // Anti-bot (honeypot)
+  honeypot?: string
+}
+
+/**
+ * Dados do formulário de contato para validação (compatível com validation utils)
+ */
+export interface ContactFormData extends IEnhancedContactForm {}
+
+/**
+ * Resposta da API de contato
+ */
+export interface IContactFormResponse {
+  success: boolean
+  message?: string
+  id?: string
+  error?: string
+  code?: string
+  errors?: { [key: string]: string[] }
+}
+
+/**
+ * Configurações de validação para formulários
+ */
+export interface IFormValidationConfig {
+  maxFileSize: number
+  maxFiles: number
+  allowedFileTypes: string[]
+  maxMessageLength: number
+  minMessageLength: number
+  phonePattern: RegExp
+  emailPattern: RegExp
+}
+
+/**
+ * Estado de submissão de formulário
+ */
+export interface IFormSubmissionState {
+  isSubmitting: boolean
+  isSuccess: boolean
+  isError: boolean
+  error?: string
+  submitAttempts: number
+}
+
+/**
+ * Configuração de um campo de formulário
+ */
+export interface IFormField {
+  name: string
+  label: string
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'radio' | 'checkbox' | 'file'
+  required: boolean
+  placeholder?: string
+  helpText?: string
+  options?: { value: string; label: string }[]
+  validation?: {
+    minLength?: number
+    maxLength?: number
+    pattern?: RegExp
+    custom?: (value: any) => string | null
+  }
+}
+
+/**
+ * Configuração de upload de arquivos
+ */
+export interface IFileUploadConfig {
+  maxSize: number // em bytes
+  maxFiles: number
+  allowedTypes: string[]
+  acceptAttribute: string
+}
+
+/**
+ * Informações de arquivo uploadado
+ */
+export interface IUploadedFile {
+  name: string
+  size: number
+  type: string
+  lastModified: number
+  content?: string | ArrayBuffer
+}
+
+/**
+ * Opções de serviços disponíveis
+ */
+export interface IServiceOption {
+  id: string
+  name: string
+  description: string
+  icon: string
+  category?: string
+}
+
+/**
+ * Níveis de urgência disponíveis
+ */
+export interface IUrgencyLevel {
+  id: string
+  name: string
+  description: string
+  color: string
+  bgColor: string
+  borderColor: string
+  icon: string
+  priority: number
 }
 
 /**
@@ -362,7 +495,7 @@ export enum ServiceCategory {
   HYDRAULIC = 'hydraulic',
   CONSULTING = 'consulting',
   PLANNING = 'planning',
-  INSPECTION = 'inspection'
+  INSPECTION = 'inspection',
 }
 
 /**
@@ -373,7 +506,7 @@ export enum ProjectStatus {
   IN_PROGRESS = 'in_progress',
   ON_HOLD = 'on_hold',
   COMPLETED = 'completed',
-  CANCELLED = 'cancelled'
+  CANCELLED = 'cancelled',
 }
 
 /**
@@ -384,7 +517,7 @@ export enum ContactType {
   CONSULTATION = 'consultation',
   SUPPORT = 'support',
   PARTNERSHIP = 'partnership',
-  GENERAL = 'general'
+  GENERAL = 'general',
 }
 
 /**
@@ -394,7 +527,7 @@ export enum Priority {
   LOW = 'low',
   MEDIUM = 'medium',
   HIGH = 'high',
-  URGENT = 'urgent'
+  URGENT = 'urgent',
 }
 
 // =============================================================================
@@ -415,13 +548,13 @@ export const APP_CONFIG = {
     city: 'São Paulo',
     state: 'SP',
     zipCode: '01234-567',
-    country: 'Brasil'
+    country: 'Brasil',
   },
   social: {
     linkedin: 'https://linkedin.com/company/oluna-engenharia',
     instagram: 'https://instagram.com/olunaengenharia',
-    facebook: 'https://facebook.com/olunaengenharia'
-  }
+    facebook: 'https://facebook.com/olunaengenharia',
+  },
 } as const
 
 /**
@@ -430,7 +563,7 @@ export const APP_CONFIG = {
 export const PAGINATION_CONFIG = {
   defaultLimit: 10,
   maxLimit: 100,
-  defaultPage: 1
+  defaultPage: 1,
 } as const
 
 /**
@@ -440,5 +573,5 @@ export const VALIDATION_CONFIG = {
   minPasswordLength: 8,
   maxFileSize: 10 * 1024 * 1024, // 10MB
   allowedImageTypes: ['image/jpeg', 'image/png', 'image/webp'],
-  allowedDocumentTypes: ['application/pdf', 'application/msword']
+  allowedDocumentTypes: ['application/pdf', 'application/msword'],
 } as const
