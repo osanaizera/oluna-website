@@ -74,22 +74,57 @@ function sanitizeFormData(data: any): ContactFormData {
  * Send email notifications
  */
 async function sendEmailNotifications(formData: ContactFormData): Promise<{
-  notificationSent: boolean
-  confirmationSent: boolean
+  notificationResult: { success: boolean; error?: string; messageId?: string }
+  confirmationResult: { success: boolean; error?: string; messageId?: string }
 }> {
   const { emailService } = await import('@/services/email')
 
   try {
+    console.log('📧 Starting email notifications for:', formData.email)
+    
     // Send notification to company
-    const notificationSent = await emailService.sendContactForm(formData)
-
+    const notificationResult = await emailService.sendContactForm(formData)
+    
     // Send confirmation to user
-    const confirmationSent = await emailService.sendConfirmationEmail(formData)
+    const confirmationResult = await emailService.sendConfirmationEmail(formData)
+    
+    console.log('📧 Email results:', {
+      notification: {
+        success: notificationResult.success,
+        error: notificationResult.error,
+        messageId: notificationResult.messageId
+      },
+      confirmation: {
+        success: confirmationResult.success,
+        error: confirmationResult.error,
+        messageId: confirmationResult.messageId
+      }
+    })
 
-    return { notificationSent, confirmationSent }
-  } catch (error) {
+    return { 
+      notificationResult: {
+        success: notificationResult.success,
+        error: notificationResult.error,
+        messageId: notificationResult.messageId
+      },
+      confirmationResult: {
+        success: confirmationResult.success,
+        error: confirmationResult.error,
+        messageId: confirmationResult.messageId
+      }
+    }
+  } catch (error: any) {
     console.error('❌ Email sending failed:', error)
-    return { notificationSent: false, confirmationSent: false }
+    return { 
+      notificationResult: { 
+        success: false, 
+        error: error.message || 'Failed to send notification email' 
+      },
+      confirmationResult: { 
+        success: false, 
+        error: error.message || 'Failed to send confirmation email' 
+      }
+    }
   }
 }
 
@@ -148,12 +183,17 @@ export async function POST(request: NextRequest) {
     // Send email notifications
     const emailResults = await sendEmailNotifications(formData)
 
-    if (!emailResults.notificationSent) {
+    if (!emailResults.notificationResult.success) {
+      console.error('❌ Notification email failed:', emailResults.notificationResult.error)
       return NextResponse.json(
         {
           success: false,
-          error: 'Failed to send notification. Please try again or contact us directly.',
+          error: `Failed to send notification: ${emailResults.notificationResult.error}. Please try again or contact us directly.`,
           code: 'EMAIL_SEND_ERROR',
+          details: {
+            notificationError: emailResults.notificationResult.error,
+            confirmationError: emailResults.confirmationResult.error
+          }
         },
         { status: 500 }
       )
@@ -166,15 +206,26 @@ export async function POST(request: NextRequest) {
       urgency: formData.urgency,
       company: formData.company,
       ip: clientIP,
+      notificationMessageId: emailResults.notificationResult.messageId,
+      confirmationMessageId: emailResults.confirmationResult.messageId,
+      confirmationSent: emailResults.confirmationResult.success
     })
 
-    // Return success response
+    // Return success response with detailed information
     return NextResponse.json(
       {
         success: true,
         message:
           'Solicitação enviada com sucesso! Nossa equipe entrará em contato em até 24 horas.',
         id: `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        details: {
+          notificationSent: emailResults.notificationResult.success,
+          confirmationSent: emailResults.confirmationResult.success,
+          messageIds: {
+            notification: emailResults.notificationResult.messageId,
+            confirmation: emailResults.confirmationResult.messageId
+          }
+        }
       },
       {
         status: 200,

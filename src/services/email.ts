@@ -10,8 +10,15 @@
 
 import { ContactFormData } from '@/utils/validation'
 
+export interface EmailResult {
+  success: boolean
+  messageId?: string
+  error?: string
+  provider?: string
+}
+
 export interface EmailProvider {
-  send(options: EmailOptions): Promise<boolean>
+  send(options: EmailOptions): Promise<EmailResult>
 }
 
 export interface EmailOptions {
@@ -39,7 +46,7 @@ export class ResendProvider implements EmailProvider {
     this.apiKey = apiKey
   }
 
-  async send(options: EmailOptions): Promise<boolean> {
+  async send(options: EmailOptions): Promise<EmailResult> {
     try {
       // Verificar se estamos em modo de desenvolvimento sem API key
       if (this.apiKey === 'dev-mode') {
@@ -48,7 +55,11 @@ export class ResendProvider implements EmailProvider {
           to: options.to,
           subject: options.subject,
         })
-        return true
+        return {
+          success: true,
+          messageId: `dev-${Date.now()}`,
+          provider: 'resend-dev-mode'
+        }
       }
 
       const { Resend } = require('resend')
@@ -63,6 +74,16 @@ export class ResendProvider implements EmailProvider {
         attachments: options.attachments
       })
 
+      // Verificar se a resposta indica sucesso
+      if (result.error) {
+        console.error('❌ Resend API error:', result.error)
+        return {
+          success: false,
+          error: result.error.message || 'Resend API error',
+          provider: 'resend'
+        }
+      }
+
       console.log('✅ Resend Email sent successfully:', {
         id: result.data?.id,
         from: options.from,
@@ -70,10 +91,18 @@ export class ResendProvider implements EmailProvider {
         subject: options.subject,
       })
 
-      return true
-    } catch (error) {
+      return {
+        success: true,
+        messageId: result.data?.id,
+        provider: 'resend'
+      }
+    } catch (error: any) {
       console.error('❌ Resend email error:', error)
-      return false
+      return {
+        success: false,
+        error: error.message || 'Unknown error occurred',
+        provider: 'resend'
+      }
     }
   }
 }
@@ -88,7 +117,7 @@ export class SendGridProvider implements EmailProvider {
     this.apiKey = apiKey
   }
 
-  async send(options: EmailOptions): Promise<boolean> {
+  async send(options: EmailOptions): Promise<EmailResult> {
     try {
       // TODO: Install sendgrid package: npm install @sendgrid/mail
       // const sgMail = require('@sendgrid/mail')
@@ -112,10 +141,18 @@ export class SendGridProvider implements EmailProvider {
         subject: options.subject,
       })
 
-      return true
-    } catch (error) {
+      return {
+        success: true,
+        messageId: `sendgrid-sim-${Date.now()}`,
+        provider: 'sendgrid-simulated'
+      }
+    } catch (error: any) {
       console.error('❌ SendGrid email error:', error)
-      return false
+      return {
+        success: false,
+        error: error.message || 'SendGrid error',
+        provider: 'sendgrid'
+      }
     }
   }
 }
@@ -138,7 +175,7 @@ export class NodemailerProvider implements EmailProvider {
     this.config = config
   }
 
-  async send(options: EmailOptions): Promise<boolean> {
+  async send(options: EmailOptions): Promise<EmailResult> {
     try {
       // TODO: Install nodemailer package: npm install nodemailer @types/nodemailer
       // const nodemailer = require('nodemailer')
@@ -162,10 +199,18 @@ export class NodemailerProvider implements EmailProvider {
         smtp: this.config.host,
       })
 
-      return true
-    } catch (error) {
+      return {
+        success: true,
+        messageId: `smtp-sim-${Date.now()}`,
+        provider: 'smtp-simulated'
+      }
+    } catch (error: any) {
       console.error('❌ SMTP email error:', error)
-      return false
+      return {
+        success: false,
+        error: error.message || 'SMTP error',
+        provider: 'smtp'
+      }
     }
   }
 }
@@ -203,10 +248,11 @@ export class EmailService {
     }
 
     // Fallback para desenvolvimento (logs apenas)
+    console.warn('⚠️ No email provider configured. Using development mode.')
     return new ResendProvider('dev-mode')
   }
 
-  async sendContactForm(formData: ContactFormData): Promise<boolean> {
+  async sendContactForm(formData: ContactFormData): Promise<EmailResult> {
     const emailOptions: EmailOptions = {
       from: process.env.FROM_EMAIL || 'noreply@olunaengenharia.com.br',
       to: process.env.CONTACT_EMAIL || 'contato@olunaengenharia.com.br',
@@ -215,10 +261,27 @@ export class EmailService {
       text: this.generateText(formData),
     }
 
-    return await this.provider.send(emailOptions)
+    console.log('📧 Sending email to:', emailOptions.to)
+    const result = await this.provider.send(emailOptions)
+    
+    if (result.success) {
+      console.log('✅ Contact form email sent successfully:', {
+        messageId: result.messageId,
+        provider: result.provider,
+        to: emailOptions.to
+      })
+    } else {
+      console.error('❌ Failed to send contact form email:', {
+        error: result.error,
+        provider: result.provider,
+        to: emailOptions.to
+      })
+    }
+    
+    return result
   }
 
-  async sendConfirmationEmail(formData: ContactFormData): Promise<boolean> {
+  async sendConfirmationEmail(formData: ContactFormData): Promise<EmailResult> {
     const emailOptions: EmailOptions = {
       from: process.env.FROM_EMAIL || 'noreply@olunaengenharia.com.br',
       to: formData.email,
@@ -227,7 +290,24 @@ export class EmailService {
       text: this.generateConfirmationText(formData),
     }
 
-    return await this.provider.send(emailOptions)
+    console.log('📧 Sending confirmation email to:', emailOptions.to)
+    const result = await this.provider.send(emailOptions)
+    
+    if (result.success) {
+      console.log('✅ Confirmation email sent successfully:', {
+        messageId: result.messageId,
+        provider: result.provider,
+        to: emailOptions.to
+      })
+    } else {
+      console.error('❌ Failed to send confirmation email:', {
+        error: result.error,
+        provider: result.provider,
+        to: emailOptions.to
+      })
+    }
+    
+    return result
   }
 
   private generateSubject(data: ContactFormData): string {
