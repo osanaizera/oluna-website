@@ -132,9 +132,13 @@ async function sendEmailNotifications(formData: ContactFormData): Promise<{
  * Handle POST request for contact form submission
  */
 export async function POST(request: NextRequest) {
+  const startTime = Date.now()
+  console.log('🚀 Contact form API started at:', new Date().toISOString())
+  
   try {
     // Get client IP for rate limiting
     const clientIP = getClientIP(request)
+    console.log('📍 Client IP:', clientIP)
 
     // Check rate limiting
     const rateLimit = checkRateLimit(clientIP)
@@ -157,19 +161,27 @@ export async function POST(request: NextRequest) {
 
     // Parse request body
     const body = await request.json()
+    console.log('📝 Form data received:', {
+      name: body.name,
+      email: body.email,
+      company: body.company,
+      service: body.service
+    })
 
     // Check honeypot field (anti-bot protection)
     if (body[HONEYPOT_FIELD]) {
-      // Silent fail for bots
+      console.log('🤖 Bot detected via honeypot field')
       return NextResponse.json({ success: true })
     }
 
     // Sanitize input data
     const formData = sanitizeFormData(body)
+    console.log('🧼 Data sanitized successfully')
 
     // Validate form data
     const validation = validateContactForm(formData)
     if (!validation.isValid) {
+      console.error('❌ Validation failed:', validation.errors)
       return NextResponse.json(
         {
           success: false,
@@ -179,8 +191,10 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+    console.log('✅ Validation passed')
 
     // Send email notifications
+    console.log('📧 Starting email sending process...')
     const emailResults = await sendEmailNotifications(formData)
 
     if (!emailResults.notificationResult.success) {
@@ -234,14 +248,24 @@ export async function POST(request: NextRequest) {
         },
       }
     )
-  } catch (error) {
-    console.error('❌ Contact form API error:', error)
+  } catch (error: any) {
+    const duration = Date.now() - startTime
+    console.error('❌ Contact form API error:', {
+      error: error.message,
+      stack: error.stack,
+      duration: `${duration}ms`,
+      timestamp: new Date().toISOString()
+    })
 
     return NextResponse.json(
       {
         success: false,
         error: 'Internal server error. Please try again later.',
         code: 'INTERNAL_ERROR',
+        debug: {
+          message: error.message,
+          duration: `${duration}ms`
+        }
       },
       { status: 500 }
     )
