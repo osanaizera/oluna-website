@@ -66,6 +66,7 @@ export default function Header() {
   const navItems = [
     { id: 'home', label: 'Início', target: 'hero' },
     { id: 'servicos', label: 'Serviços', target: 'servicos' },
+    { id: 'blog', label: 'Blog', target: null, href: '/blog' },
     { id: 'sobre', label: 'Sobre', target: 'sobre' },
     { id: 'cases', label: 'Cases', target: 'cases' },
     { id: 'contato', label: 'Contato', target: 'contato' },
@@ -172,30 +173,59 @@ export default function Header() {
               role="navigation"
               aria-label="Menu principal"
             >
-              {navItems.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => scrollToSection(item.target, item.label)}
-                  onKeyDown={(e) => handleNavKeyDown(e, index)}
-                  className={`px-4 py-2 text-sm font-medium transition-all duration-200 relative group rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
-                    isScrolled
-                      ? 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                      : 'text-white/95 hover:text-white hover:bg-white/10 drop-shadow-sm'
-                  } ${activeNavItem === item.target ? 'bg-primary-50 text-primary-600' : ''}`}
-                  aria-label={`Navegar para ${item.label}`}
-                  aria-current={activeNavItem === item.target ? 'page' : undefined}
-                >
-                  {item.label}
-                  {/* Active indicator */}
-                  <motion.div
-                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: 32 }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </button>
-              ))}
+              {navItems.map((item, index) => {
+                if (item.href) {
+                  // External link (Blog)
+                  return (
+                    <a
+                      key={item.id}
+                      href={item.href}
+                      onKeyDown={(e) => handleNavKeyDown(e, index)}
+                      className={`px-4 py-2 text-sm font-medium transition-all duration-200 relative group rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
+                        isScrolled
+                          ? 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                          : 'text-white/95 hover:text-white hover:bg-white/10 drop-shadow-sm'
+                      }`}
+                      aria-label={`Navegar para ${item.label}`}
+                    >
+                      {item.label}
+                      {/* Active indicator */}
+                      <motion.div
+                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500"
+                        initial={{ width: 0 }}
+                        whileHover={{ width: 32 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    </a>
+                  )
+                } else {
+                  // Internal scroll link
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => item.target && scrollToSection(item.target, item.label)}
+                      onKeyDown={(e) => handleNavKeyDown(e, index)}
+                      className={`px-4 py-2 text-sm font-medium transition-all duration-200 relative group rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
+                        isScrolled
+                          ? 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                          : 'text-white/95 hover:text-white hover:bg-white/10 drop-shadow-sm'
+                      } ${activeNavItem === item.target ? 'bg-primary-50 text-primary-600' : ''}`}
+                      aria-label={`Navegar para ${item.label}`}
+                      aria-current={activeNavItem === item.target ? 'page' : undefined}
+                    >
+                      {item.label}
+                      {/* Active indicator */}
+                      <motion.div
+                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500"
+                        initial={{ width: 0 }}
+                        whileHover={{ width: 32 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    </button>
+                  )
+                }
+              })}
             </nav>
 
             {/* CTA Button Desktop */}
@@ -266,19 +296,39 @@ export default function Header() {
             >
               <nav className="container mx-auto px-4 py-6">
                 <div className="space-y-2">
-                  {navItems.map((item, index) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => scrollToSection(item.target, item.label)}
-                      onKeyDown={(e) => handleNavKeyDown(e, index)}
-                      className="block w-full text-left text-gray-700 font-medium py-3 px-4 rounded-lg hover:text-primary-600 hover:bg-gray-50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-                      aria-label={`Navegar para ${item.label}`}
-                      role="menuitem"
-                    >
-                      {item.label}
-                    </button>
-                  ))}
+                  {navItems.map((item, index) => {
+                    if (item.href) {
+                      // External link (Blog)
+                      return (
+                        <a
+                          key={item.id}
+                          href={item.href}
+                          onKeyDown={(e) => handleNavKeyDown(e, index)}
+                          className="block w-full text-left text-gray-700 font-medium py-3 px-4 rounded-lg hover:text-primary-600 hover:bg-gray-50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                          aria-label={`Navegar para ${item.label}`}
+                          role="menuitem"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </a>
+                      )
+                    } else {
+                      // Internal scroll link
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => item.target && scrollToSection(item.target, item.label)}
+                          onKeyDown={(e) => handleNavKeyDown(e, index)}
+                          className="block w-full text-left text-gray-700 font-medium py-3 px-4 rounded-lg hover:text-primary-600 hover:bg-gray-50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                          aria-label={`Navegar para ${item.label}`}
+                          role="menuitem"
+                        >
+                          {item.label}
+                        </button>
+                      )
+                    }
+                  })}
                   <div className="pt-4 border-t border-gray-200 mt-4">
                     <a
                       href="https://wa.me/5521973498376?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20Ôluna%20Engenharia."
