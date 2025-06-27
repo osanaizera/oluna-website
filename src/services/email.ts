@@ -254,8 +254,8 @@ export class EmailService {
 
   async sendContactForm(formData: ContactFormData): Promise<EmailResult> {
     const emailOptions: EmailOptions = {
-      from: process.env.FROM_EMAIL || 'noreply@olunaengenharia.com.br',
-      to: process.env.CONTACT_EMAIL || 'contato@olunaengenharia.com.br',
+      from: process.env.FROM_EMAIL || 'contato@oluna.com.br',
+      to: process.env.CONTACT_EMAIL || 'contato@oluna.com.br',
       subject: this.generateSubject(formData),
       html: this.generateHTML(formData),
       text: this.generateText(formData),
@@ -283,7 +283,7 @@ export class EmailService {
 
   async sendConfirmationEmail(formData: ContactFormData): Promise<EmailResult> {
     const emailOptions: EmailOptions = {
-      from: process.env.FROM_EMAIL || 'noreply@olunaengenharia.com.br',
+      from: process.env.FROM_EMAIL || 'contato@oluna.com.br',
       to: formData.email,
       subject: 'Confirmação de Solicitação - Ôluna Engenharia',
       html: this.generateConfirmationHTML(formData),
@@ -539,7 +539,7 @@ export class EmailService {
           
           <div class="footer">
             <p>Este email foi gerado automaticamente pelo site da Ôluna Engenharia</p>
-            <p>Para mais informações, acesse: <a href="https://olunaengenharia.com.br" style="color: #0093FF;">olunaengenharia.com.br</a></p>
+            <p>Para mais informações, acesse: <a href="https://oluna.com.br" style="color: #0093FF;">oluna.com.br</a></p>
           </div>
         </div>
       </body>
@@ -632,8 +632,8 @@ Este email foi gerado automaticamente pelo site da Ôluna Engenharia
               <h3>📋 Próximos passos:</h3>
               <ul>
                 <li><span class="highlight">24 horas:</span> Nossa equipe entrará em contato</li>
-                <li><span class="highlight">48 horas:</span> Agendamento da análise inicial</li>
-                <li><span class="highlight">5 dias:</span> Relatório preliminar</li>
+                <li><span class="highlight">48 horas:</span> Entrega de proposta preliminar</li>
+                <li><span class="highlight">Casos complexos:</span> Prazo informado durante contato inicial</li>
               </ul>
             </div>
             
@@ -646,7 +646,7 @@ Este email foi gerado automaticamente pelo site da Ôluna Engenharia
             </ul>
             
             <p>Dúvidas? Entre em contato:</p>
-            <p>📧 <a href="mailto:contato@olunaengenharia.com.br">contato@olunaengenharia.com.br</a><br>
+            <p>📧 <a href="mailto:contato@oluna.com.br">contato@oluna.com.br</a><br>
             📱 <a href="tel:+5521973498376">(21) 97349-8376</a></p>
           </div>
         </div>
@@ -665,8 +665,8 @@ Sua solicitação de ${data.service} foi recebida com sucesso.
 
 PRÓXIMOS PASSOS:
 • 24 horas: Nossa equipe entrará em contato
-• 48 horas: Agendamento da análise inicial  
-• 5 dias: Relatório preliminar
+• 48 horas: Entrega de proposta preliminar
+• Casos complexos: Prazo informado durante contato inicial
 
 DADOS DA SOLICITAÇÃO:
 Empresa: ${data.company}
@@ -675,8 +675,8 @@ Urgência: ${data.urgency}
 Cidade: ${data.city}
 
 Dúvidas? Entre em contato:
-Email: contato@olunaengenharia.com.br
-Telefone: (11) 99999-9999
+Email: contato@oluna.com.br
+Telefone: (21) 97349-8376
 
 Obrigado pela confiança!
 Equipe Ôluna Engenharia
