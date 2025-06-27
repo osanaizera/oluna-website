@@ -80,12 +80,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ))}
 
         {/* Favicon and Icons */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF6A3D" />
+        <link rel="mask-icon" href="/favicon.svg" color="#FF6A3D" />
 
         {/* Web App Manifest */}
         <link rel="manifest" href="/site.webmanifest" />
@@ -122,8 +119,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Canonical URL is handled by Next.js metadata API */}
 
         {/* Preload Critical Images */}
-        <link rel="preload" as="image" href="/logo.png" />
-        <link rel="preload" as="image" href="/hero-bg.jpg" />
+        <link rel="preload" as="image" href="/favicon.svg" />
       </head>
       <body className={`${fontClassNames.body} antialiased bg-gray-50 text-gray-900 font-body`}>
         {/* Enhanced Skip Navigation for Accessibility */}
