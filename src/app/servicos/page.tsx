@@ -246,16 +246,28 @@ export default function ServicosPage() {
                       </button>
                     </div>
 
-                    <div className="bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl p-8 text-center">
-                      <div className="text-6xl mb-6">🔥</div>
-                      <h4 className="text-2xl font-bold text-gray-900 mb-4">Análise Gratuita</h4>
-                      <p className="text-gray-600 mb-6">
-                        Oferecemos análise termográfica inicial gratuita para avaliar suas
-                        necessidades e demonstrar nosso expertise.
-                      </p>
-                      <div className="bg-white rounded-xl p-4">
-                        <div className="text-3xl font-bold text-orange-600 mb-2">24h</div>
-                        <div className="text-sm text-gray-600">Prazo para análise inicial</div>
+                    <div className="relative bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl p-8 text-center overflow-hidden">
+                      {/* Background Image */}
+                      <div className="absolute inset-0 opacity-20">
+                        <img
+                          src="/images/services/termografia.png"
+                          alt="Termografia Industrial"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="relative z-10">
+                        <div className="text-6xl mb-6">🔥</div>
+                        <h4 className="text-2xl font-bold text-gray-900 mb-4">Análise Gratuita</h4>
+                        <p className="text-gray-600 mb-6">
+                          Oferecemos análise termográfica inicial gratuita para avaliar suas
+                          necessidades e demonstrar nosso expertise.
+                        </p>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4">
+                          <div className="text-3xl font-bold text-orange-600 mb-2">24h</div>
+                          <div className="text-sm text-gray-600">Prazo para análise inicial</div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -264,20 +276,32 @@ export default function ServicosPage() {
                 {/* Laudos NR-10 */}
                 <div className="bg-white rounded-3xl p-8 shadow-lg">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="bg-gradient-to-br from-blue-100 to-teal-100 rounded-2xl p-8 text-center order-2 lg:order-1">
-                      <div className="text-6xl mb-6">📋</div>
-                      <h4 className="text-2xl font-bold text-gray-900 mb-4">Conformidade Legal</h4>
-                      <p className="text-gray-600 mb-6">
-                        Laudos técnicos elaborados conforme exigências legais e normas técnicas
-                        vigentes, garantindo total conformidade.
-                      </p>
-                      <div className="bg-white rounded-xl p-4 mb-4">
-                        <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
-                        <div className="text-sm text-gray-600">Aprovados em fiscalizações</div>
+                    <div className="relative bg-gradient-to-br from-blue-100 to-teal-100 rounded-2xl p-8 text-center order-2 lg:order-1 overflow-hidden">
+                      {/* Background Image */}
+                      <div className="absolute inset-0 opacity-15">
+                        <img
+                          src="/images/services/SPDA.png"
+                          alt="Sistema SPDA"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <div className="bg-white rounded-xl p-4">
-                        <div className="text-3xl font-bold text-blue-600 mb-2">48h</div>
-                        <div className="text-sm text-gray-600">Prazo para entrega</div>
+                      
+                      {/* Content */}
+                      <div className="relative z-10">
+                        <div className="text-6xl mb-6">📋</div>
+                        <h4 className="text-2xl font-bold text-gray-900 mb-4">Conformidade Legal</h4>
+                        <p className="text-gray-600 mb-6">
+                          Laudos técnicos elaborados conforme exigências legais e normas técnicas
+                          vigentes, garantindo total conformidade.
+                        </p>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 mb-4">
+                          <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
+                          <div className="text-sm text-gray-600">Aprovados em fiscalizações</div>
+                        </div>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4">
+                          <div className="text-3xl font-bold text-blue-600 mb-2">48h</div>
+                          <div className="text-sm text-gray-600">Prazo para entrega</div>
+                        </div>
                       </div>
                     </div>
 
@@ -389,22 +413,34 @@ export default function ServicosPage() {
                       </button>
                     </div>
 
-                    <div className="bg-gradient-to-br from-teal-100 to-cyan-100 rounded-2xl p-8 text-center">
-                      <div className="text-6xl mb-6">⚡</div>
-                      <h4 className="text-2xl font-bold text-gray-900 mb-4">
-                        Monitoramento 7 Dias
-                      </h4>
-                      <p className="text-gray-600 mb-6">
-                        Instalamos equipamentos de medição por 7 dias consecutivos para capturar
-                        todas as variações do sistema.
-                      </p>
-                      <div className="bg-white rounded-xl p-4 mb-4">
-                        <div className="text-3xl font-bold text-teal-600 mb-2">24/7</div>
-                        <div className="text-sm text-gray-600">Monitoramento contínuo</div>
+                    <div className="relative bg-gradient-to-br from-teal-100 to-cyan-100 rounded-2xl p-8 text-center overflow-hidden">
+                      {/* Background Image */}
+                      <div className="absolute inset-0 opacity-15">
+                        <img
+                          src="/images/services/diagnostico.png"
+                          alt="Diagnóstico Elétrico"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <div className="bg-white rounded-xl p-4">
-                        <div className="text-3xl font-bold text-teal-600 mb-2">15%</div>
-                        <div className="text-sm text-gray-600">Economia média alcançada</div>
+                      
+                      {/* Content */}
+                      <div className="relative z-10">
+                        <div className="text-6xl mb-6">⚡</div>
+                        <h4 className="text-2xl font-bold text-gray-900 mb-4">
+                          Monitoramento 7 Dias
+                        </h4>
+                        <p className="text-gray-600 mb-6">
+                          Instalamos equipamentos de medição por 7 dias consecutivos para capturar
+                          todas as variações do sistema.
+                        </p>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 mb-4">
+                          <div className="text-3xl font-bold text-teal-600 mb-2">24/7</div>
+                          <div className="text-sm text-gray-600">Monitoramento contínuo</div>
+                        </div>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4">
+                          <div className="text-3xl font-bold text-teal-600 mb-2">15%</div>
+                          <div className="text-sm text-gray-600">Economia média alcançada</div>
+                        </div>
                       </div>
                     </div>
                   </div>

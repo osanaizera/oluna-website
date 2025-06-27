@@ -254,8 +254,20 @@ export default function ProjetosPage() {
 
                       {/* Imagem e CTA */}
                       <div className="lg:col-span-1">
-                        <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-8 text-center h-full flex flex-col justify-between">
-                          <div>
+                        <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-8 text-center h-full flex flex-col justify-between overflow-hidden">
+                          {/* Background Image for Hotel projects */}
+                          {project.category === 'Hotelaria' && (
+                            <div className="absolute inset-0 opacity-20">
+                              <img
+                                src="/images/services/resort.png"
+                                alt="Resort Hotel"
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                          )}
+                          
+                          {/* Content */}
+                          <div className="relative z-10">
                             <div className="text-6xl mb-6">
                               {project.category === 'Hotelaria' && '🏨'}
                               {project.category === 'Corporativo' && '🏢'}
@@ -269,7 +281,7 @@ export default function ProjetosPage() {
                               acompanhamento dos resultados.
                             </p>
                           </div>
-                          <button className="w-full bg-gray-800 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all duration-300">
+                          <button className="relative z-10 w-full bg-gray-800/90 backdrop-blur-sm text-white py-3 rounded-xl font-semibold hover:bg-gray-700/90 transition-all duration-300">
                             Ver Case Completo
                           </button>
                         </div>
