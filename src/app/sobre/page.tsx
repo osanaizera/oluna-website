@@ -3,7 +3,7 @@ import { generatePageMetadata, generateBreadcrumbSchema, generateArticleSchema }
 import { generateServiceKeywords } from '@/utils/seo'
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Sobre a Ôluna Engenharia - 25 Anos de Experiência no Rio de Janeiro',
+  title: 'Sobre - Nossa História e Expertise',
   description:
     'Conheça a história da Ôluna Engenharia. Mais de 25 anos de experiência em termografia industrial e diagnósticos elétricos no Rio de Janeiro. Engenheiros CRE A especializados.',
   keywords: [

@@ -3,7 +3,7 @@ import { generatePageMetadata, generateBreadcrumbSchema } from '@/lib/seo'
 import { generateServiceKeywords, generateContactSchema } from '@/utils/seo'
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Contato - Termografia Industrial Rio de Janeiro | Ôluna Engenharia',
+  title: 'Contato - Fale com Nossos Especialistas',
   description:
     'Entre em contato com a Ôluna Engenharia. Termografia industrial, laudos NR-10 e diagnósticos elétricos no Rio de Janeiro. Análise gratuita em 24h. Telefone: (21) 99999-9999.',
   keywords: [

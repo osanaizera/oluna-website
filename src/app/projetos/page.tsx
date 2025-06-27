@@ -3,7 +3,7 @@ import { generatePageMetadata, generateBreadcrumbSchema } from '@/lib/seo'
 import { generateServiceKeywords } from '@/utils/seo'
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Cases de Sucesso e Projetos - Termografia Industrial Rio de Janeiro',
+  title: 'Projetos - Cases de Sucesso e Portfolio',
   description:
     'Conheça nossos cases de sucesso em termografia industrial, laudos NR-10 e diagnósticos elétricos no Rio de Janeiro. Projetos realizados em hotéis, condomínios e indústrias.',
   keywords: [

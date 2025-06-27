@@ -3,7 +3,7 @@ import { generatePageMetadata, generateBreadcrumbSchema, generateServiceSchema }
 import { generateServiceKeywords } from '@/utils/seo'
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Serviços de Termografia Industrial e Diagnósticos Elétricos - Rio de Janeiro',
+  title: 'Serviços - Termografia e Diagnósticos Elétricos',
   description:
     'Termografia industrial, laudos NR-10, diagnósticos elétricos, análise de qualidade energética e monitoramento contínuo no Rio de Janeiro. Engenheiros CRE A especializados.',
   keywords: [

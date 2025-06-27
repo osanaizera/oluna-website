@@ -18,7 +18,7 @@ export const seoConfig = {
   // SEO Defaults
   defaults: {
     titleTemplate: '%s | Ôluna Engenharia',
-    defaultTitle: 'Ôluna Engenharia - Termografia Industrial e Diagnósticos Elétricos',
+    defaultTitle: 'Ôluna Engenharia - Especialistas em Energia | Termografia e Diagnósticos Elétricos',
     description:
       'Engenheiros CRE A especialistas em termografia industrial, diagnósticos elétricos e eficiência energética. Detecte falhas antes que aconteçam com manutenção preditiva.',
     keywords: [
